@@ -1,0 +1,18 @@
+.buttonClose {
+    -fx-background-color: transparent;
+    -fx-padding: 5px;
+    -fx-alignment: center;
+    -fx-border-radius: 0px; /* Bords de la bordure carrés */
+    -fx-background-radius: 0px; /* Bords du fond carrés */
+}
+.buttonClose:hover {
+    -fx-background-color: #A90301;
+    -fx-cursor: hand;
+}
+.buttonClose:pressed {
+    -fx-background-color: #A8302C;
+}
+
+
+
+
