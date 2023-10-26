@@ -6,6 +6,7 @@ import com.memorize.memorize.stages.InscriptionStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class LoginController {
@@ -22,6 +23,8 @@ public class LoginController {
     private Pane draggablePane;
     @FXML
     private PasswordField passwordLogin;
+    @FXML
+    private AnchorPane anchorBackground;
     /*
     Classes
      */
@@ -34,10 +37,11 @@ public class LoginController {
     protected void initialize() {
         shiftUI.paneDragSettings(draggablePane);
 
+        anchorBackground.getStyleClass().add("anchorBackground");
         draggablePane.getStyleClass().add("draggablePane");
         passwordLogin.getStyleClass().add("passwordLogin");
         buttonConnect.getStyleClass().add("buttonConnect");
-        buttonInscription.getStylesheets().add("buttonInscription");
+        buttonInscription.getStyleClass().add("buttonInscription");
         buttonClose.getStyleClass().add("buttonClose");
     }
     /*

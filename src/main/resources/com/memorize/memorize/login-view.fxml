@@ -5,11 +5,17 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="155.0" prefWidth="227.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #323232; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.memorize.memorize.controller.LoginController">
-      <Button fx:id="buttonConnect" layoutX="32.0" layoutY="105.0" mnemonicParsing="false" onAction="#setConnectBtn" prefHeight="31.0" prefWidth="73.0" style="-fx-background-color: #50C878;" text="Connexion" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="100.0" />
-      <Button fx:id="buttonInscription" layoutX="119.0" layoutY="105.0" mnemonicParsing="false" onAction="#setInscriptionBtn" style="-fx-background-color: #D9E1F9;" text="Inscription" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="100.0" />
+<AnchorPane fx:id="anchorBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="155.0" prefWidth="227.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.memorize.memorize.controller.LoginController">
+      <Button fx:id="buttonConnect" layoutX="31.0" layoutY="105.0" mnemonicParsing="false" onAction="#setConnectBtn" prefHeight="31.0" prefWidth="73.0" text="CONNEXION" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="105.0">
+      <font>
+         <Font size="10.0" />
+      </font></Button>
+      <Button fx:id="buttonInscription" layoutX="125.0" layoutY="105.0" mnemonicParsing="false" onAction="#setInscriptionBtn" text="INSCRIPTION" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="105.0">
+      <font>
+         <Font size="10.0" />
+      </font></Button>
    <PasswordField fx:id="passwordLogin" layoutX="34.0" layoutY="64.0" prefHeight="25.0" prefWidth="159.0" promptText="password" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="62.0" />
-    <AnchorPane fx:id="draggablePane" layoutX="17.0" layoutY="7.0" prefHeight="42.0" prefWidth="204.0" style="-fx-background-color: #4A4A4A;" AnchorPane.bottomAnchor="115.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <AnchorPane fx:id="draggablePane" layoutX="17.0" layoutY="7.0" prefHeight="42.0" prefWidth="204.0" AnchorPane.bottomAnchor="115.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Label alignment="CENTER" layoutX="14.0" layoutY="9.0" text="Login" textAlignment="CENTER" textFill="WHITE">
         <font>
             <Font size="14.0" />

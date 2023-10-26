@@ -29,6 +29,8 @@ public class MainController {
         shiftUI.paneDragSettings(draggablePane);
         buttonClose.getStyleClass().add("close-button");
         buttonShift.getStyleClass().add("buttonShift");
+        draggablePane.getStyleClass().add("draggablePane");
+        gridPane.getStyleClass().add("gridPane");
     }
     /*
     Control

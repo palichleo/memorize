@@ -27,7 +27,7 @@
       </children>
     </GridPane>
     
-    <AnchorPane fx:id="draggablePane" layoutX="1.0" layoutY="2.0" prefHeight="46.0" prefWidth="1000.0" style="-fx-background-color: #666666;" AnchorPane.bottomAnchor="560.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <AnchorPane fx:id="draggablePane" layoutX="1.0" layoutY="2.0" prefHeight="46.0" prefWidth="1000.0" AnchorPane.bottomAnchor="560.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Button fx:id="buttonClose" layoutX="950.0" layoutY="4.0" mnemonicParsing="false" onAction="#buttonClose" prefHeight="39.0" prefWidth="42.0" text="X" textAlignment="CENTER" textFill="#c9c9c9" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <font>
                 <Font name="Arial" size="15.0" />

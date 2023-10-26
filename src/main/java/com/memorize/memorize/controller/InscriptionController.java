@@ -5,6 +5,7 @@ import com.memorize.memorize.stages.InscriptionStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class InscriptionController {
@@ -14,11 +15,15 @@ public class InscriptionController {
     @FXML
     private Button buttonClose;
     @FXML
-    private PasswordField password;
+    private Button buttonInscription;
+    @FXML
+    private PasswordField passwordLogin;
     @FXML
     private PasswordField passwordVerifier;
     @FXML
     private Pane draggablePane;
+    @FXML
+    private AnchorPane anchorBackground;
     /*
     Classes
      */
@@ -30,7 +35,13 @@ public class InscriptionController {
     @FXML
     protected void initialize(){
         shiftUI.paneDragSettings(draggablePane);
-        buttonClose.getStyleClass().add("close-button");
+
+        buttonClose.getStyleClass().add("buttonClose");
+        buttonInscription.getStyleClass().add("buttonInscription");
+        anchorBackground.getStyleClass().add("anchorBackground");
+        draggablePane.getStyleClass().add("draggablePane");
+        passwordLogin.getStyleClass().add("passwordLogin");
+        passwordVerifier.getStyleClass().add("passwordVerifier");
     }
     /*
     Control
@@ -42,6 +53,6 @@ public class InscriptionController {
 
     @FXML
     protected void setInscriptionBtn() {
-        inscriptionLogic.verification(password, passwordVerifier);
+        inscriptionLogic.verification(passwordLogin, passwordVerifier);
     }
 }

@@ -14,10 +14,14 @@
 }
 
 .buttonShift {
-
     -fx-background-color: #A90301;
     -fx-cursor: hand;
-
 }
 
+.draggablePane {
+    -fx-background-color:  #4A4A4A;
+}
 
+.gridPane{
+
+}
