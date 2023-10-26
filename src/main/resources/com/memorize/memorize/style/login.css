@@ -21,6 +21,10 @@
     -fx-background-color: #D9E1F9;
 }
 
+.buttonKey {
+    -fx-background-color: #c8a650;
+}
+
 .draggablePane {
     -fx-background-color:  #4A4A4A;
 }

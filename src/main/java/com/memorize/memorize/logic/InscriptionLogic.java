@@ -9,7 +9,7 @@ import javafx.util.Duration;
 public class InscriptionLogic {
     public void verification(PasswordField password, PasswordField passwordVerifier) {
         if (password.getText().equals(passwordVerifier.getText())){
-            if (lengh(passwordVerifier)) {
+            if (lenght(passwordVerifier)) {
                 //Appel de la méthode permettant l'inscription
                 try {
                     Chiffrement chiffrement = new Chiffrement();
@@ -32,7 +32,7 @@ public class InscriptionLogic {
             clearAndSetPrompt(passwordVerifier, "No match !");
         }
     }
-    private boolean lengh(PasswordField passwordVerifier){
+    private boolean lenght(PasswordField passwordVerifier){
             return passwordVerifier.getLength()>10;
     }
     private void clearAndSetPrompt(PasswordField password, String prompt){ //Design
@@ -41,7 +41,7 @@ public class InscriptionLogic {
     }
     private void timerClose() { //UX
         Timeline time = new Timeline(new KeyFrame(
-                Duration.millis(1300),
+                Duration.millis(1250),
                 actionEvent -> {
                         insClose();
                 })

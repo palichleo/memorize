@@ -33,13 +33,14 @@ public class AuthLogic {
                 LoginStage.connexionClose();
             } else {
                 passwordField.clear();
+                passwordField.setPromptText("Non ...");
                 counterBruteForce(connect);
             }
     }
-    private void counterBruteForce(Button connect) { //Security
+    private void counterBruteForce(Button connect) { //Security Brute Force protection
         connect.setDisable(true);
         Timeline time = new Timeline(new KeyFrame(
-                Duration.millis(2000),
+                Duration.millis(450),
                 actionEvent -> {
                     enableButton(connect);
                 })
@@ -50,6 +51,10 @@ public class AuthLogic {
         connect.setDisable(false); //enable button
     }
     private boolean valid(String password) {
-        return true; //password.equals(chiffrement.dechiffrerPassword()); //Retourne true si le mot de passe est bon
+        try {
+            return password.equals(chiffrement.dechiffrerPassword()); //Retourne true si le mot de passe est bon
+        } catch (Exception e){
+            return false;
+        }
     }
 }

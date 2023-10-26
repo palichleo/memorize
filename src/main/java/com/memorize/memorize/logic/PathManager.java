@@ -94,21 +94,18 @@ public class PathManager {
             return Files.readAllBytes(keyFilePath);
         } catch (IOException e) {
             System.err.println("Impossible de recuperer la clée, réassignement nécessaire.");
-
-            return reassignmentKeyPath(); //réasignement
+            return new byte[0]; //réasignement
         }
     }
-    public byte[] reassignmentKeyPath(){
+    public void reassignmentKeyPath(){
         String keyPath = userPathDefine("KEY", "GET"); //Appel d'un stage permettant de recuperer la clée
         //On save le path
-        saveKeyPref(keyPath);
-        Path keyFilePath = Paths.get(keyPath);
-        try {
-            return Files.readAllBytes(keyFilePath);
-        } catch (IOException e) {
-            System.err.println("Erreur critique lors du réasignement");
-            return new byte[0];
+        if (keyPath==null){
+            System.err.println("Veuillez spécifier un fichier");
+        } else {
+           saveKeyPref(keyPath);
         }
+
     }
     public String userPathDefine(String KEYorPASSorPREF, String saveOrGet){ //Users define the path of the key
         Stage stage = new Stage();

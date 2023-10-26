@@ -2,6 +2,7 @@ package com.memorize.memorize.controller;
 
 import com.memorize.memorize.logic.AuthLogic;
 
+import com.memorize.memorize.logic.PathManager;
 import com.memorize.memorize.stages.InscriptionStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,6 +21,8 @@ public class LoginController {
     @FXML
     private Button buttonInscription;
     @FXML
+    private Button buttonKey;
+    @FXML
     private Pane draggablePane;
     @FXML
     private PasswordField passwordLogin;
@@ -30,6 +33,7 @@ public class LoginController {
      */
     private final AuthLogic authLogic = new AuthLogic();
     private final ShiftUI shiftUI = new ShiftUI();
+    private final PathManager pathManager = new PathManager();
     /*
     Initialization
      */
@@ -43,6 +47,7 @@ public class LoginController {
         buttonConnect.getStyleClass().add("buttonConnect");
         buttonInscription.getStyleClass().add("buttonInscription");
         buttonClose.getStyleClass().add("buttonClose");
+        buttonKey.getStyleClass().add("buttonKey");
     }
     /*
     Control
@@ -52,7 +57,10 @@ public class LoginController {
         authLogic.inscritVerifier(passwordLogin, buttonConnect);
     }
     @FXML
-
+    protected void setButtonKey(){
+        pathManager.reassignmentKeyPath();
+    }
+    @FXML
     protected void setInscriptionBtn(){
         passwordLogin.clear();
         passwordLogin.setPromptText("password");

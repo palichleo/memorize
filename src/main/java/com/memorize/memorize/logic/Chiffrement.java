@@ -24,10 +24,7 @@ public class Chiffrement {
             SecretKey key = new SecretKeySpec(pathManager.keyReader(), 0, pathManager.keyReader().length, ALGORITHM);
             return decrypt(pathManager.passReader(), key);
         } catch (Exception e) {
-            System.err.println("clééeeee svpp path");
-            pathManager.userPathDefine("KEY", "GET");
-            SecretKey key = new SecretKeySpec(pathManager.keyReader(), 0, pathManager.keyReader().length, ALGORITHM);
-            return decrypt(pathManager.passReader(), key);
+            return null;
         }
     }
 
