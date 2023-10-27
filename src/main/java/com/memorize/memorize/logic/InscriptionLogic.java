@@ -52,4 +52,3 @@ public class InscriptionLogic {
         InscriptionStage.inscriptionClose();
     }
 }
-

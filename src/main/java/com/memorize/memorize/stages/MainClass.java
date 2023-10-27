@@ -23,7 +23,7 @@ public class MainClass {
             memorize.setScene(memorizeScene);
             memorize.show();
         } catch (IOException e){
-            System.err.println("Une erreur s'est produite"+e.getMessage());
+            System.err.println("Une erreur s'est produite dans l'initialisation du main"+e.getMessage());
         }
     }
 }

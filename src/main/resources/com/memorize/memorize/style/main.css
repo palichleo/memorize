@@ -18,10 +18,19 @@
     -fx-cursor: hand;
 }
 
+.buttonAdd {
+    -fx-background-color: #50C878;
+}
+
 .draggablePane {
     -fx-background-color:  #4A4A4A;
 }
 
 .gridPane{
 
+}
+
+.cell {
+    -fx-border-color: #EAE4E9;
+    -fx-border-width: 0 0.6 0.6 0;
 }

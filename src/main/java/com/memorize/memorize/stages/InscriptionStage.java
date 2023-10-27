@@ -13,7 +13,7 @@ import java.util.Objects;
 public class InscriptionStage {
     private static Stage in;
     private final FXMLLoader inFXML = new FXMLLoader(Memorize.class.getResource("inscription-view.fxml"));
-    public Stage inscriptionStage() {
+    public void inscriptionStage() {
         try {
             in = new Stage();
             in.setTitle("Inscription");
@@ -26,10 +26,8 @@ public class InscriptionStage {
 
             in.setScene(inScene);
             in.show();
-            return in;
         } catch (IOException e){
-            System.err.println("Une erreur s'est produite"+e.getMessage());
-            return in;
+            System.err.println("Une erreur s'est produite dans l'inscription"+e.getMessage());
         }
     }
     public static void inscriptionClose() {
