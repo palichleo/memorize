@@ -1,0 +1,29 @@
+package com.memorize.memorize.stages;
+
+import com.memorize.memorize.Memorize;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
+import java.util.Objects;
+
+public class MainStage {
+    private final FXMLLoader memorizeMainFXML = new FXMLLoader(Memorize.class.getResource("memorize-view.fxml"));
+    private final Stage memorize = new Stage();
+    public void memorizeMain() {
+        try {
+            memorize.setTitle("Memorize");
+            memorize.initStyle(StageStyle.UNDECORATED);
+
+            Scene memorizeScene = new Scene(memorizeMainFXML.load(), 1000, 600);
+            memorizeScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/memorize/memorize/style/main.css")).toExternalForm());
+
+            memorize.setScene(memorizeScene);
+            memorize.show();
+        } catch (IOException e){
+            System.err.println("Une erreur s'est produite dans l'initialisation du main"+e.getMessage());
+        }
+    }
+}

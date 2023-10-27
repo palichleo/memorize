@@ -1,10 +1,11 @@
 package com.memorize.memorize.controller;
 
 import com.memorize.memorize.logic.GridLogic;
+import com.memorize.memorize.stages.NewPasswordStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 
 public class MainController {
     /*
@@ -17,7 +18,7 @@ public class MainController {
     @FXML
     private Button buttonAdd;
     @FXML
-    private Pane draggablePane;
+    private AnchorPane draggablePane;
     @FXML
     private GridPane gridPane;
     /*
@@ -31,7 +32,7 @@ public class MainController {
     @FXML
     protected void initialize() {
         shiftUI.paneDragSettings(draggablePane);
-        buttonClose.getStyleClass().add("close-button");
+        buttonClose.getStyleClass().add("buttonClose");
         buttonShift.getStyleClass().add("buttonShift");
         draggablePane.getStyleClass().add("draggablePane");
         gridPane.getStyleClass().add("gridPane");
@@ -51,8 +52,7 @@ public class MainController {
     }
     @FXML
     protected void setButtonAdd(){
-        gridLogic.setVboxesChild(0, 0, 'G');
-
-
+        NewPasswordStage newPasswordStage = new NewPasswordStage();
+        newPasswordStage.newPasswordStage();
     }
 }

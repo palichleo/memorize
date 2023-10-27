@@ -21,7 +21,7 @@ public class InscriptionController {
     @FXML
     private PasswordField passwordVerifier;
     @FXML
-    private Pane draggablePane;
+    private AnchorPane draggablePane;
     @FXML
     private AnchorPane anchorBackground;
     /*

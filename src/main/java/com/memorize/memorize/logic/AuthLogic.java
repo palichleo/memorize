@@ -1,10 +1,9 @@
 package com.memorize.memorize.logic;
 
 import com.memorize.memorize.stages.LoginStage;
-import com.memorize.memorize.stages.MainClass;
+import com.memorize.memorize.stages.MainStage;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.util.Duration;
@@ -28,7 +27,7 @@ public class AuthLogic {
     */
     private void access(PasswordField passwordField, Button connect){
             if (valid(passwordField.getText())) {
-                MainClass main = new MainClass();
+                MainStage main = new MainStage();
                 main.memorizeMain();
                 LoginStage.connexionClose();
             } else {

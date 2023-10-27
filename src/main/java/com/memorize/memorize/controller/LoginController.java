@@ -23,7 +23,7 @@ public class LoginController {
     @FXML
     private Button buttonKey;
     @FXML
-    private Pane draggablePane;
+    private AnchorPane draggablePane;
     @FXML
     private PasswordField passwordLogin;
     @FXML

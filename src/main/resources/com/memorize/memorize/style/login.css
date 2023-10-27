@@ -25,6 +25,9 @@
     -fx-background-color: #c8a650;
 }
 
+.buttonNewPass {
+    -fx-background-color: #50C878;
+}
 .draggablePane {
     -fx-background-color:  #4A4A4A;
 }
