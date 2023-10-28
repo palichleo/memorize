@@ -17,7 +17,7 @@ public class MainStage {
             memorize.setTitle("Memorize");
             memorize.initStyle(StageStyle.UNDECORATED);
 
-            Scene memorizeScene = new Scene(memorizeMainFXML.load(), 1000, 600);
+            Scene memorizeScene = new Scene(memorizeMainFXML.load(), 820, 620);
             memorizeScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/memorize/memorize/style/main.css")).toExternalForm());
 
             memorize.setScene(memorizeScene);

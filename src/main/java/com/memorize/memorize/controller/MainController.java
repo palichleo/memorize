@@ -14,7 +14,9 @@ public class MainController {
     @FXML
     private Button buttonClose;
     @FXML
-    private Button buttonShift;
+    private Button buttonShiftRight;
+    @FXML
+    private Button buttonShiftLeft;
     @FXML
     private Button buttonAdd;
     @FXML
@@ -33,7 +35,8 @@ public class MainController {
     protected void initialize() {
         shiftUI.paneDragSettings(draggablePane);
         buttonClose.getStyleClass().add("buttonClose");
-        buttonShift.getStyleClass().add("buttonShift");
+        buttonShiftRight.getStyleClass().add("buttonShift");
+        buttonShiftLeft.getStyleClass().add("buttonShift");
         draggablePane.getStyleClass().add("draggablePane");
         gridPane.getStyleClass().add("gridPane");
         buttonAdd.getStyleClass().add("buttonAdd");
@@ -47,12 +50,20 @@ public class MainController {
         System.exit(0);
     }
     @FXML
-    protected void handleButtonAction() {
-        shiftUI.nodeShift(gridPane, buttonShift, 1600, 1000, "left");
+    protected void setButtonShiftRight() {
+        shiftUI.nodeShift(gridPane, buttonShiftRight, 1600, 1000, "left");
+    }
+    @FXML
+    protected void setButtonShiftLeft() {
+        shiftUI.nodeShift(gridPane, buttonShiftRight, 1600, 1000, "right");
     }
     @FXML
     protected void setButtonAdd(){
-        NewPasswordStage newPasswordStage = new NewPasswordStage();
+        NewPasswordStage newPasswordStage = new NewPasswordStage(this);
         newPasswordStage.newPasswordStage();
+    }
+    protected void refresh(){
+
+
     }
 }

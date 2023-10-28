@@ -31,6 +31,6 @@
 }
 
 .cell {
-    -fx-border-color: #EAE4E9;
-    -fx-border-width: 0 0.6 0.6 0;
+    -fx-border-color: #dadada;
+    -fx-border-width: 0.2 0.2 0.2 0.2;
 }

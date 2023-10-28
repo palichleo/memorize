@@ -4,8 +4,10 @@ import com.memorize.memorize.logic.GridLogic;
 import com.memorize.memorize.stages.NewPasswordStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class NewPasswordController {
@@ -15,22 +17,31 @@ public class NewPasswordController {
     @FXML
     protected Button buttonNewPass;
     @FXML
-    private Button buttonClose;
+    private Button closeButton;
     @FXML
     protected AnchorPane draggablePane;
     @FXML
-    private PasswordField passwordLogin;
+    private TextField textSite;
     @FXML
-    private PasswordField passwordVerifier;
+    private TextField textPassword;
     @FXML
     private AnchorPane anchorBackground;
     @FXML
     private VBox vboxVisualyze;
+    @FXML
+    private Label labelChar;
+    @FXML
+    private Label labelSite;
+    @FXML
+    private Label labelPassword;
     /*
    Classes
     */
-    ShiftUI shiftUI = new ShiftUI();
-    GridLogic gridLogic = new GridLogic();
+    private final ShiftUI shiftUI = new ShiftUI();
+    public MainController mainController;
+    public void setMain(MainController controller){
+        this.mainController = controller;
+    }
     /*
     Initialization
      */
@@ -39,27 +50,36 @@ public class NewPasswordController {
         shiftUI.paneDragSettings(draggablePane);
 
         vboxVisualyze.getStyleClass().add("cell");
-        buttonClose.getStyleClass().add("buttonClose");
+        closeButton.getStyleClass().add("buttonClose");
         buttonNewPass.getStyleClass().add("buttonNewPass");
         anchorBackground.getStyleClass().add("anchorBackground");
         draggablePane.getStyleClass().add("draggablePane");
-        passwordLogin.getStyleClass().add("passwordLogin");
-        passwordVerifier.getStyleClass().add("passwordVerifier");
+        textSite.getStyleClass().add("textSite");
+        textPassword.getStyleClass().add("textPassword");
+
+        //Refresh
+//Set prévisualisation
+
     }
     /*
     Control
      */
     @FXML
     protected void setPasswordButton(){
-        gridLogic.setVboxesChild(0, 0, 'G');
+        //Set des variables
 
+
+
+
+
+        //Set refresh
+
+        mainController.refresh();
     }
     @FXML
     protected void closeBtn(){NewPasswordStage.passClose();}
 
     private void verifierSiMemeSite(){
-
-
 
     }
 }
