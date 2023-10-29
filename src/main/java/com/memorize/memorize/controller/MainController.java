@@ -24,10 +24,12 @@ public class MainController {
     @FXML
     private GridPane gridPane;
     /*
-    Classes
+    Classes & var
      */
     private final ShiftUI shiftUI = new ShiftUI();
     private final GridLogic gridLogic = new GridLogic();
+    private int pos = 0;
+
     /*
     Initialization
      */
@@ -49,20 +51,33 @@ public class MainController {
     protected void buttonClose() {
         System.exit(0);
     }
+    private boolean mur(int LR) { //Méthode pour empecher l'utilisateur d'aller vers la gauche avec le gridpane 'méthode mur'
+        if (LR==0) {
+            return pos > 0;
+        } else {
+            return pos==0; //on pourra remplacer par ==1 et ==2 et .. quand il y aura plusieurs pages..
+        }
+    }
     @FXML
     protected void setButtonShiftRight() {
-        shiftUI.nodeShift(gridPane, buttonShiftRight, 1600, 1000, "left");
+        if (mur(1)) {
+            shiftUI.nodeShift(gridPane, buttonShiftRight, 1600, 600, "left");
+            pos++;
+        }
     }
     @FXML
     protected void setButtonShiftLeft() {
-        shiftUI.nodeShift(gridPane, buttonShiftRight, 1600, 1000, "right");
+        if (mur(0)) {
+            shiftUI.nodeShift(gridPane, buttonShiftRight, 1600, 600, "right");
+            pos--;
+        }
     }
     @FXML
-    protected void setButtonAdd(){
+    protected void setButtonAdd() {
         NewPasswordStage newPasswordStage = new NewPasswordStage(this);
         newPasswordStage.newPasswordStage();
     }
-    protected void refresh(){
+    protected void refresh() {
 
 
     }

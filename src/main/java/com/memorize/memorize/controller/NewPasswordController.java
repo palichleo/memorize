@@ -1,13 +1,15 @@
 package com.memorize.memorize.controller;
 
-import com.memorize.memorize.logic.GridLogic;
+import com.memorize.memorize.logic.AddPassword;
 import com.memorize.memorize.stages.NewPasswordStage;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class NewPasswordController {
@@ -48,7 +50,7 @@ public class NewPasswordController {
     @FXML
     protected void initialize(){
         shiftUI.paneDragSettings(draggablePane);
-
+        //Styles
         vboxVisualyze.getStyleClass().add("cell");
         closeButton.getStyleClass().add("buttonClose");
         buttonNewPass.getStyleClass().add("buttonNewPass");
@@ -57,8 +59,34 @@ public class NewPasswordController {
         textSite.getStyleClass().add("textSite");
         textPassword.getStyleClass().add("textPassword");
 
+        /*
+        Listeners gerant les textfields et les labels
+         */
+        //Association des textes et des labels
+        textSite.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && !newValue.isEmpty()) {
+                char letter = newValue.charAt(0);
+                labelChar.setText(String.valueOf(letter));
+            }
+        });
+        labelSite.textProperty().bind(textSite.textProperty());
+        labelPassword.textProperty().bind(textPassword.textProperty());
+        //On limite le nombre de caractères
+        textSite.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && newValue.length() > 15) {  // Limite à 15 caractères
+                textSite.setText(oldValue);
+            }
+        });
+        textPassword.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && newValue.length() > 30) {
+                textPassword.setText(oldValue);
+            }
+        });
+
+
         //Refresh
-//Set prévisualisation
+
+        //Set prévisualisation
 
     }
     /*
@@ -66,14 +94,11 @@ public class NewPasswordController {
      */
     @FXML
     protected void setPasswordButton(){
-        //Set des variables
-
-
-
-
-
+        //Set des variables dans AddPassword
+        AddPassword addPassword = new AddPassword(labelChar.getText(),labelSite.getText(), labelPassword.getText());
+        //Appel de la méthode permettant d'enregistrer les variables extérieurement
+        addPassword.addPassword();
         //Set refresh
-
         mainController.refresh();
     }
     @FXML

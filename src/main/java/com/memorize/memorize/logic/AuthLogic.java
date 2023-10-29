@@ -9,7 +9,6 @@ import javafx.scene.control.PasswordField;
 import javafx.util.Duration;
 
 public class AuthLogic {
-    private final Chiffrement chiffrement = new Chiffrement();
     private final PathManager pathManager = new PathManager();
     /*
     *   Verifier si l'utilisateur est inscrit, si non, ouvrir une page d'inscription
