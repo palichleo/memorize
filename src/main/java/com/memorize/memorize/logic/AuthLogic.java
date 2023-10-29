@@ -9,29 +9,18 @@ import javafx.scene.control.PasswordField;
 import javafx.util.Duration;
 
 public class AuthLogic {
-    private final PathManager pathManager = new PathManager();
-    /*
-    *   Verifier si l'utilisateur est inscrit, si non, ouvrir une page d'inscription
-    */
-    public void inscritVerifier(PasswordField password, Button connect){
-        if (pathManager.inscritVerif()){
-            access(password, connect);
-        } else {
-            password.clear();
-            password.setPromptText("Inscrivez-vous !");
-        }
-    }
     /*
     *   Verifier si le mot de passe est bon, si oui, ouvrir le main
     */
-    private void access(PasswordField passwordField, Button connect){
+    Chiffrement chiffrement = new Chiffrement();
+    public void access(PasswordField passwordField, Button connect){
             if (valid(passwordField.getText())) {
                 MainStage main = new MainStage();
                 main.memorizeMain();
                 LoginStage.connexionClose();
             } else {
                 passwordField.clear();
-                passwordField.setPromptText("Non ...");
+                passwordField.setPromptText("wrong password");
                 counterBruteForce(connect);
             }
     }

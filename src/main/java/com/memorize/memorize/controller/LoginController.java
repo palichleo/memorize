@@ -4,8 +4,10 @@ import com.memorize.memorize.logic.AuthLogic;
 
 import com.memorize.memorize.logic.PathManager;
 import com.memorize.memorize.stages.InscriptionStage;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -28,6 +30,10 @@ public class LoginController {
     private PasswordField passwordLogin;
     @FXML
     private AnchorPane anchorBackground;
+    @FXML
+    private AnchorPane anchorPaneBackConnect;
+    @FXML
+    private Label labelLogin;
     /*
     Classes
      */
@@ -41,20 +47,40 @@ public class LoginController {
     protected void initialize() {
         shiftUI.paneDragSettings(draggablePane);
 
-        anchorBackground.getStyleClass().add("anchorBackground");
-        draggablePane.getStyleClass().add("draggablePane");
-        passwordLogin.getStyleClass().add("passwordLogin");
         buttonConnect.getStyleClass().add("buttonConnect");
         buttonInscription.getStyleClass().add("buttonInscription");
         buttonClose.getStyleClass().add("buttonClose");
         buttonKey.getStyleClass().add("buttonKey");
+        anchorBackground.getStyleClass().add("anchorBackground");
+        anchorPaneBackConnect.getStyleClass().add("anchorPaneBackConnect");
+        draggablePane.getStyleClass().add("draggablePane");
+        passwordLogin.getStyleClass().add("passwordLogin");
+
+        String username = System.getProperty("user.name");
+        labelLogin.setText("Login ~ " + username);
+
+        if (pathManager.inscritVerif()){
+            passwordLogin.setPromptText("password");
+            buttonConnect.setVisible(true);
+            buttonInscription.setVisible(false);
+            buttonConnect.setDisable(false);
+            buttonInscription.setDisable(true);
+        } else {
+            buttonConnect.setVisible(false);
+            buttonInscription.setVisible(true);
+            buttonConnect.setDisable(true);
+            buttonInscription.setDisable(false);
+            passwordLogin.clear();
+            passwordLogin.setPromptText("Install needed !");
+            passwordLogin.setDisable(true);
+        }
     }
     /*
     Control
      */
     @FXML
     protected void setConnectBtn(){
-        authLogic.inscritVerifier(passwordLogin, buttonConnect);
+        authLogic.access(passwordLogin, buttonConnect);
     }
     @FXML
     protected void setButtonKey(){
@@ -62,10 +88,20 @@ public class LoginController {
     }
     @FXML
     protected void setInscriptionBtn(){
-        passwordLogin.clear();
-        passwordLogin.setPromptText("password");
         InscriptionStage in = new InscriptionStage();
         in.inscriptionStage();
+
+        Platform.runLater(() -> {
+            buttonConnect.setVisible(true);
+            buttonInscription.setVisible(false);
+            buttonConnect.setDisable(false);
+            buttonInscription.setDisable(true);
+            passwordLogin.clear();
+            passwordLogin.setPromptText("password");
+            passwordLogin.setDisable(false);
+        });
+
+
     }
     @FXML
     protected void closeBtn() {

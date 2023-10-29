@@ -2,12 +2,9 @@ package com.memorize.memorize.controller;
 
 import com.memorize.memorize.logic.AddPassword;
 import com.memorize.memorize.stages.NewPasswordStage;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -17,17 +14,19 @@ public class NewPasswordController {
     Nodes
      */
     @FXML
-    protected Button buttonNewPass;
+    private Button buttonNewPass;
     @FXML
     private Button closeButton;
     @FXML
-    protected AnchorPane draggablePane;
+    private AnchorPane draggablePane;
     @FXML
     private TextField textSite;
     @FXML
     private TextField textPassword;
     @FXML
     private AnchorPane anchorBackground;
+    @FXML
+    private AnchorPane anchorPaneAddPassword;
     @FXML
     private VBox vboxVisualyze;
     @FXML
@@ -51,14 +50,17 @@ public class NewPasswordController {
     protected void initialize(){
         shiftUI.paneDragSettings(draggablePane);
         //Styles
-        vboxVisualyze.getStyleClass().add("cell");
         closeButton.getStyleClass().add("buttonClose");
         buttonNewPass.getStyleClass().add("buttonNewPass");
         anchorBackground.getStyleClass().add("anchorBackground");
+        anchorPaneAddPassword.getStyleClass().add("anchorPaneAddPassword");
         draggablePane.getStyleClass().add("draggablePane");
         textSite.getStyleClass().add("textSite");
         textPassword.getStyleClass().add("textPassword");
-
+        vboxVisualyze.getStyleClass().add("cell");
+        labelChar.getStyleClass().add("labelChar");
+        labelSite.getStyleClass().add("labelSite");
+        labelPassword.getStyleClass().add("labelPassword");
         /*
         Listeners gerant les textfields et les labels
          */

@@ -20,7 +20,7 @@ public class LoginStage {
             login.setTitle("Login");
             login.setResizable(false);
 
-            Scene sceneConnect = new Scene(fxmlLoader.load(), 227, 155);
+            Scene sceneConnect = new Scene(fxmlLoader.load(), 230, 164);
             sceneConnect.getStylesheets().add(Objects.requireNonNull(LoginStage.class.getResource("/com/memorize/memorize/style/login.css")).toExternalForm());
 
             login.setScene(sceneConnect);

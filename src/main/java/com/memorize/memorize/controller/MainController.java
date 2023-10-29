@@ -20,7 +20,11 @@ public class MainController {
     @FXML
     private Button buttonAdd;
     @FXML
+    private Button buttonReset;
+    @FXML
     private AnchorPane draggablePane;
+    @FXML
+    private AnchorPane anchorBackground;
     @FXML
     private GridPane gridPane;
     /*
@@ -39,7 +43,9 @@ public class MainController {
         buttonClose.getStyleClass().add("buttonClose");
         buttonShiftRight.getStyleClass().add("buttonShift");
         buttonShiftLeft.getStyleClass().add("buttonShift");
+        buttonReset.getStyleClass().add("buttonReset");
         draggablePane.getStyleClass().add("draggablePane");
+        anchorBackground.getStyleClass().add("anchorBackground");
         gridPane.getStyleClass().add("gridPane");
         buttonAdd.getStyleClass().add("buttonAdd");
         gridLogic.resetAndCreate(gridPane);

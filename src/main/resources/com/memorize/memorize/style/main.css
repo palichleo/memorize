@@ -1,9 +1,8 @@
 .buttonClose {
     -fx-background-color: transparent;
-    -fx-padding: 5px;
     -fx-alignment: center;
-    -fx-border-radius: 0px; /* Bords de la bordure carrés */
-    -fx-background-radius: 0px; /* Bords du fond carrés */
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
 }
 .buttonClose:hover {
     -fx-background-color: #A90301;
@@ -12,25 +11,65 @@
 .buttonClose:pressed {
     -fx-background-color: #A8302C;
 }
-
 .buttonShift {
-    -fx-background-color: #A90301;
+    -fx-background-color: #40AB60;
     -fx-cursor: hand;
 }
-
 .buttonAdd {
-    -fx-background-color: #50C878;
+    -fx-background-color: #40AB60;
+}
+.buttonNewPass{
+    -fx-background-color: #40AB60;
+    -fx-border-width: 0.2 0.2 0.2 0.2;
+    -fx-alignment: center;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-effect: innershadow(gaussian, rgb(16, 37, 66), 2, 0.2, 0.0, 0.0);
+}
+.buttonReset{
+    -fx-background-color: #7A89C2;
 }
 
 .draggablePane {
-    -fx-background-color:  #4A4A4A;
+    -fx-background-color:  #102542;
+}
+.anchorBackground{
+    -fx-background-color: #E0E0E0;
+    -fx-border-color: #102542;
+}
+.anchorPaneAddPassword{
+    -fx-border-width: 0.2 0.2 0.2 0.2;
+    -fx-background-color: #102542;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -fx-effect: innershadow(gaussian, rgb(224, 224, 224), 2, 0.2, 0.0, 0.0);
+    -fx-opacity: 0.9;
 }
 
 .gridPane{
-
+    -fx-background-color: #E0E0E0;
+}
+.cell {
+    -fx-border-width: 0.2 0.2 0.2 0.2;
+    -fx-background-color: #102542;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -fx-effect: innershadow(gaussian, rgb(224, 224, 224), 2, 0.2, 0.0, 0.0);
+    -fx-opacity: 0.9;
+}
+.textSite{
+    -fx-border-color: #102542;
+}
+.textPassword{
+    -fx-border-color: #102542;
 }
 
-.cell {
-    -fx-border-color: #dadada;
-    -fx-border-width: 0.2 0.2 0.2 0.2;
+.labelChar {
+    -fx-text-fill: #FFFFFF;
+}
+.labelSite {
+    -fx-text-fill: #FFFFFF;
+}
+.labelPassword {
+    -fx-text-fill: #FFFFFF;
 }
