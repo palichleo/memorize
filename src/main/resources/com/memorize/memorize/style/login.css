@@ -1,8 +1,8 @@
 .buttonClose {
     -fx-background-color: transparent;
     -fx-alignment: center;
-    -fx-border-radius: 0px; /* Bords de la bordure carrés */
-    -fx-background-radius: 0px; /* Bords du fond carrés */
+    -fx-background-radius: 0 4 0 0;
+    -fx-border-radius: 0 4 0 0;
 }
 .buttonClose:hover {
     -fx-background-color: rgba(169, 3, 1, 0.8);
@@ -38,10 +38,6 @@
     -fx-background-color: rgba(219, 35, 35, 0.60);
 }
 
-.draggablePane {
-    -fx-background-color: rgba(16, 37, 66, 0.85);
-}
-
 .passwordLogin {
     -fx-background-color: #E0E0E0;
     -fx-text-fill: #000000;
@@ -51,21 +47,26 @@
     -fx-background-radius: 6px;
 }
 .passwordLogin:focused {
-    -fx-effect: dropshadow(three-pass-box, rgba(16, 37, 66, 0.85), 1.8, 0.1, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgba(16, 37, 66, 0.90), 1.8, 0.1, 0, 0);
 }
 
+.draggablePane {
+    -fx-background-color: rgba(16, 37, 66, 0.85);
+    -fx-background-radius: 4 4 0 0;
+    -fx-border-radius: 4 4 0 0;
+}
 .anchorBackground {
-    -fx-background-color: rgb(224, 224, 224);
-    -fx-border-color: #228CDB;
-    -fx-border-width: 0.2;
+    -fx-background-color: transparent;
+    -fx-border-color: #102542;
+    -fx-border-width: 0.9;
+    -fx-background-radius: 5 5 5 5;
+    -fx-border-radius: 5 5 5 5;
 }
 .anchorPaneBackConnect{
-    -fx-background-color: linear-gradient(rgba(16, 37, 66, 0.85) 0%, #102542 99%);
-    -fx-background-radius: 0px;
-    -fx-border-radius: 0px;
-    -fx-opacity: 1;
+    -fx-background-color: linear-gradient(rgba(16, 37, 66, 0.90) 10%, #102542 90%);
+    -fx-background-radius: 0 0 4 4;
+    -fx-border-radius: 0 0 4 4;
 }
-.anchorPaneBackConnectText{
-
-
+.paneBehindTextbox {
+    -fx-background-color : rgba(224, 224, 224, 0.90);
 }

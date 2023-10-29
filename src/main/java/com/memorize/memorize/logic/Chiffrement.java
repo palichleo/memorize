@@ -21,7 +21,8 @@ public class Chiffrement {
     }
     public String dechiffrerPassword() {
         try {
-            SecretKey key = new SecretKeySpec(pathManager.keyReader(), 0, pathManager.keyReader().length, ALGORITHM);
+            byte[] keyBytes = pathManager.keyReader();
+            SecretKey key = new SecretKeySpec(keyBytes, 0, keyBytes.length, ALGORITHM);
             return decrypt(pathManager.passReader(), key);
         } catch (Exception e) {
             return null;

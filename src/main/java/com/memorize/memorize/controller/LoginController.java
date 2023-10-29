@@ -33,6 +33,8 @@ public class LoginController {
     @FXML
     private AnchorPane anchorPaneBackConnect;
     @FXML
+    private AnchorPane paneBehindTextbox;
+    @FXML
     private Label labelLogin;
     /*
     Classes
@@ -53,6 +55,7 @@ public class LoginController {
         buttonKey.getStyleClass().add("buttonKey");
         anchorBackground.getStyleClass().add("anchorBackground");
         anchorPaneBackConnect.getStyleClass().add("anchorPaneBackConnect");
+        paneBehindTextbox.getStyleClass().add("paneBehindTextbox");
         draggablePane.getStyleClass().add("draggablePane");
         passwordLogin.getStyleClass().add("passwordLogin");
 
@@ -100,11 +103,13 @@ public class LoginController {
             passwordLogin.setPromptText("password");
             passwordLogin.setDisable(false);
         });
-
-
     }
     @FXML
     protected void closeBtn() {
         System.exit(0);
     }
 }
+
+//ENTRER PRESSER POUR VALIDER LA CONNEXION
+
+//KEY PRESSED .....

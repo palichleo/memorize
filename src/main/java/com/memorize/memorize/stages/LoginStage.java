@@ -3,6 +3,7 @@ package com.memorize.memorize.stages;
 import com.memorize.memorize.Memorize;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -16,11 +17,12 @@ public class LoginStage {
     private static void connexion() {
         try {
             login = new Stage();
-            login.initStyle(StageStyle.UNDECORATED);
             login.setTitle("Login");
             login.setResizable(false);
+            login.initStyle(StageStyle.TRANSPARENT);
 
             Scene sceneConnect = new Scene(fxmlLoader.load(), 230, 164);
+            sceneConnect.setFill(Color.TRANSPARENT);
             sceneConnect.getStylesheets().add(Objects.requireNonNull(LoginStage.class.getResource("/com/memorize/memorize/style/login.css")).toExternalForm());
 
             login.setScene(sceneConnect);

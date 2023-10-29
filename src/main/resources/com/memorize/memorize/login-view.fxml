@@ -14,12 +14,16 @@
         </Label>
         <Button fx:id="buttonClose" alignment="CENTER" contentDisplay="CENTER" layoutX="204.0" layoutY="6.0" onAction="#closeBtn" prefWidth="40.0" text="x" textAlignment="CENTER" textFill="#c9c9c9" textOverrun="CENTER_ELLIPSIS" AnchorPane.bottomAnchor="0.5" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
-            <Font name="Monospaced Regular" size="20.0" />
+            <Font name="MS Reference Sans Serif" size="16.0" />
          </font></Button>
     </AnchorPane>
-   <Line endX="130.0" layoutX="100.0" layoutY="41.0" opacity="0.3" startX="-100.0" stroke="#00798f80" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-   <PasswordField fx:id="passwordLogin" prefHeight="40.0" prefWidth="230.0" promptText="password" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="57.0" />
-   <AnchorPane fx:id="anchorPaneBackConnect" layoutY="112.0" prefHeight="57.0" prefWidth="292.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
+   <AnchorPane fx:id="paneBehindTextbox" layoutX="2.0" layoutY="32.0" prefHeight="70.0" prefWidth="231.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <children>
+         <PasswordField fx:id="passwordLogin" layoutY="15.0" prefHeight="40.0" prefWidth="230.0" promptText="password" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="18.0" />
+         <Line endX="127.5" layoutX="100.5" layoutY="1.0" opacity="0.9" startX="-99.8" stroke="#258ed966" AnchorPane.topAnchor="0.0" />
+         <Line endX="127.5" layoutX="100.5" layoutY="69.0" opacity="0.9" startX="-99.8" stroke="#258ed966" AnchorPane.bottomAnchor="0.0" />
+      </children></AnchorPane>
+   <AnchorPane fx:id="anchorPaneBackConnect" layoutY="112.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
       <children>
             <Button fx:id="buttonConnect" mnemonicParsing="false" onAction="#setConnectBtn" text="Log - in" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="10.0">
             <font>
@@ -36,5 +40,4 @@
             </font></Button>
       </children>
    </AnchorPane>
-   <Line endX="130.0" layoutX="100.5" layoutY="109.0" opacity="0.3" startX="-100.0" stroke="#00798f80" AnchorPane.leftAnchor="0.0" />
 </AnchorPane>

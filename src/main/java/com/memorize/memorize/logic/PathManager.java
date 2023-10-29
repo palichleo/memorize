@@ -90,8 +90,7 @@ public class PathManager {
 
         //Lecture de la clée grâce au chemin
         try {
-            Path keyFilePath = Paths.get(keyPath);
-            return Files.readAllBytes(keyFilePath);
+            return Files.readAllBytes(Paths.get(keyPath));
         } catch (IOException e) {
             System.err.println("Impossible de recuperer la clée, réassignement nécessaire.");
             return new byte[0]; //réasignement
