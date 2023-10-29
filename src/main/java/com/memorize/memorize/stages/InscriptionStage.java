@@ -21,7 +21,7 @@ public class InscriptionStage {
             in.setResizable(false);
             in.initModality(Modality.APPLICATION_MODAL); //Les autres stages sont inutilisables
 
-            Scene inScene = new Scene(inFXML.load(), 227, 155);
+            Scene inScene = new Scene(inFXML.load(), 230, 200);
             inScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/memorize/memorize/style/login.css")).toExternalForm());
 
             in.setScene(inScene);

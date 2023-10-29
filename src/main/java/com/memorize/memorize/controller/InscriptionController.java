@@ -4,6 +4,7 @@ import com.memorize.memorize.logic.InscriptionLogic;
 import com.memorize.memorize.stages.InscriptionStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -24,6 +25,10 @@ public class InscriptionController {
     private AnchorPane draggablePane;
     @FXML
     private AnchorPane anchorBackground;
+    @FXML
+    private AnchorPane anchorPaneBackInscription;
+    @FXML
+    private Label labelInstall;
     /*
     Classes
      */
@@ -37,11 +42,16 @@ public class InscriptionController {
         shiftUI.paneDragSettings(draggablePane);
 
         buttonClose.getStyleClass().add("buttonClose");
-        buttonInscription.getStyleClass().add("buttonInscription");
+        buttonInscription.getStyleClass().add("buttonConnect");
         anchorBackground.getStyleClass().add("anchorBackground");
+        anchorPaneBackInscription.getStyleClass().add("anchorPaneBackConnect");
         draggablePane.getStyleClass().add("draggablePane");
         passwordLogin.getStyleClass().add("passwordLogin");
-        passwordVerifier.getStyleClass().add("passwordVerifier");
+        passwordVerifier.getStyleClass().add("passwordLogin");
+
+        String username = System.getProperty("user.name");
+        labelInstall.setText("Install ~ " + username);
+
     }
     /*
     Control

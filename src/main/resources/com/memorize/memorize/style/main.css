@@ -5,11 +5,11 @@
     -fx-background-radius: 0px;
 }
 .buttonClose:hover {
-    -fx-background-color: #A90301;
-    -fx-cursor: hand;
+    -fx-background-color: rgba(169, 3, 1, 0.8);
+
 }
 .buttonClose:pressed {
-    -fx-background-color: #A8302C;
+    -fx-background-color: rgba(169, 3, 1, 0.6);
 }
 .buttonShift {
     -fx-background-color: #40AB60;

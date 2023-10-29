@@ -48,7 +48,7 @@ public class LoginController {
         shiftUI.paneDragSettings(draggablePane);
 
         buttonConnect.getStyleClass().add("buttonConnect");
-        buttonInscription.getStyleClass().add("buttonInscription");
+        buttonInscription.getStyleClass().add("buttonConnect");
         buttonClose.getStyleClass().add("buttonClose");
         buttonKey.getStyleClass().add("buttonKey");
         anchorBackground.getStyleClass().add("anchorBackground");

@@ -7,17 +7,17 @@
 
 <AnchorPane fx:id="anchorBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="230.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.memorize.memorize.controller.LoginController">
     <AnchorPane fx:id="draggablePane" layoutY="1.0" prefHeight="40.0" prefWidth="204.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <Label fx:id="labelLogin" alignment="CENTER" layoutX="14.0" layoutY="9.0" text="Login" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="10.0">
+        <Label fx:id="labelLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="9.0" text="Login" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="10.0">
         <font>
             <Font size="14.0" />
         </font>
         </Label>
-        <Button fx:id="buttonClose" alignment="CENTER" contentDisplay="CENTER" layoutX="204.0" layoutY="6.0" onAction="#closeBtn" prefWidth="36.0" text="x" textAlignment="CENTER" textFill="#c9c9c9" textOverrun="CENTER_ELLIPSIS" AnchorPane.bottomAnchor="4.4" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+        <Button fx:id="buttonClose" alignment="CENTER" contentDisplay="CENTER" layoutX="204.0" layoutY="6.0" onAction="#closeBtn" prefWidth="40.0" text="x" textAlignment="CENTER" textFill="#c9c9c9" textOverrun="CENTER_ELLIPSIS" AnchorPane.bottomAnchor="0.5" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
-            <Font name="Verdana" size="14.0" />
+            <Font name="Monospaced Regular" size="20.0" />
          </font></Button>
     </AnchorPane>
-   <Line endX="130.0" layoutX="100.5" layoutY="41.0" opacity="0.3" startX="-100.0" stroke="#00798f80" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" />
+   <Line endX="130.0" layoutX="100.0" layoutY="41.0" opacity="0.3" startX="-100.0" stroke="#00798f80" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    <PasswordField fx:id="passwordLogin" prefHeight="40.0" prefWidth="230.0" promptText="password" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="57.0" />
    <AnchorPane fx:id="anchorPaneBackConnect" layoutY="112.0" prefHeight="57.0" prefWidth="292.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
       <children>

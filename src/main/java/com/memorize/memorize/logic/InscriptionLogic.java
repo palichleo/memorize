@@ -24,7 +24,8 @@ public class InscriptionLogic {
                     clearAndSetPrompt(passwordVerifier, "Error !");
                 }
             } else {
-                clearAndSetPrompt(passwordVerifier, "Trop court (10 minimum)");
+                clearAndSetPrompt(password, "too short (10 char min) !");
+                clearAndSetPrompt(passwordVerifier, "too short  (10 char min) !");
             }
         } else {
             //design
