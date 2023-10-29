@@ -30,7 +30,7 @@ public class MainController {
     /*
     Classes & var
      */
-    private final ShiftUI shiftUI = new ShiftUI();
+    private final DesignUI shiftUI = new DesignUI();
     private final GridLogic gridLogic = new GridLogic();
     private int pos = 0;
 

@@ -38,7 +38,7 @@ public class NewPasswordController {
     /*
    Classes
     */
-    private final ShiftUI shiftUI = new ShiftUI();
+    private final DesignUI shiftUI = new DesignUI();
     public MainController mainController;
     public void setMain(MainController controller){
         this.mainController = controller;

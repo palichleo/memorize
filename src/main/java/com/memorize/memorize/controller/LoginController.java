@@ -4,13 +4,15 @@ import com.memorize.memorize.logic.AuthLogic;
 
 import com.memorize.memorize.logic.PathManager;
 import com.memorize.memorize.stages.InscriptionStage;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 public class LoginController {
     /*
@@ -40,14 +42,14 @@ public class LoginController {
     Classes
      */
     private final AuthLogic authLogic = new AuthLogic();
-    private final ShiftUI shiftUI = new ShiftUI();
+    private final DesignUI designUI = new DesignUI();
     private final PathManager pathManager = new PathManager();
     /*
     Initialization
      */
     @FXML
     protected void initialize() {
-        shiftUI.paneDragSettings(draggablePane);
+        designUI.paneDragSettings(draggablePane);
 
         buttonConnect.getStyleClass().add("buttonConnect");
         buttonInscription.getStyleClass().add("buttonConnect");
@@ -77,6 +79,9 @@ public class LoginController {
             passwordLogin.setPromptText("Install needed !");
             passwordLogin.setDisable(true);
         }
+
+        Timeline timeline = designUI.getTimeline(passwordLogin);
+        timeline.play();
     }
     /*
     Control

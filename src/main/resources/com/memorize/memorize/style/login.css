@@ -40,11 +40,10 @@
 
 .passwordLogin {
     -fx-background-color: #E0E0E0;
-    -fx-text-fill: #000000;
-    -fx-border-color: #102542;
     -fx-border-width: 0.5;
     -fx-border-radius: 6px;
     -fx-background-radius: 6px;
+    -fx-cursor: pointer;
 }
 .passwordLogin:focused {
     -fx-effect: dropshadow(three-pass-box, rgba(16, 37, 66, 0.90), 1.8, 0.1, 0, 0);

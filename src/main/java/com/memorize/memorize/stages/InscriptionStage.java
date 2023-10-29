@@ -3,6 +3,7 @@ package com.memorize.memorize.stages;
 import com.memorize.memorize.Memorize;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -17,11 +18,12 @@ public class InscriptionStage {
         try {
             in = new Stage();
             in.setTitle("Inscription");
-            in.initStyle(StageStyle.UNDECORATED);
+            in.initStyle(StageStyle.TRANSPARENT);
             in.setResizable(false);
             in.initModality(Modality.APPLICATION_MODAL); //Les autres stages sont inutilisables
 
-            Scene inScene = new Scene(inFXML.load(), 230, 200);
+            Scene inScene = new Scene(inFXML.load(), 230, 206);
+            inScene.setFill(Color.TRANSPARENT);
             inScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/memorize/memorize/style/login.css")).toExternalForm());
 
             in.setScene(inScene);

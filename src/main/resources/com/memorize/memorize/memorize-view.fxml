@@ -30,6 +30,7 @@
             <Font size="15.0" />
          </font>
       </Label>
+      <Button layoutX="715.0" layoutY="2.0" mnemonicParsing="false" text="?" />
     </AnchorPane>
    <Button fx:id="buttonShiftLeft" layoutX="14.0" layoutY="50.0" mnemonicParsing="false" onAction="#setButtonShiftLeft" prefHeight="500.0" prefWidth="40.0" text="&lt;" AnchorPane.leftAnchor="10.0" />
    <Button fx:id="buttonShiftRight" layoutX="815.0" layoutY="50.0" mnemonicParsing="false" onAction="#setButtonShiftRight" prefHeight="500.0" prefWidth="40.0" text="&gt;" AnchorPane.leftAnchor="770.0" AnchorPane.rightAnchor="10.0" />
