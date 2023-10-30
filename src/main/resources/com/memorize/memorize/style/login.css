@@ -69,3 +69,13 @@
 .paneBehindTextbox {
     -fx-background-color : rgba(224, 224, 224, 0.90);
 }
+.vboxStep {
+
+    -fx-border-color: #102542;
+    -fx-border-width: 0.9;
+    -fx-background-radius: 5 5 5 5;
+    -fx-border-radius: 5 5 5 5;
+}
+.labelStepFalse{
+    -fx-text-fill: #DB2323;
+}

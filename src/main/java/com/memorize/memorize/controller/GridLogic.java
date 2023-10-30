@@ -1,4 +1,4 @@
-package com.memorize.memorize.logic;
+package com.memorize.memorize.controller;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;

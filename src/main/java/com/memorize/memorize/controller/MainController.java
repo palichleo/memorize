@@ -1,6 +1,5 @@
 package com.memorize.memorize.controller;
 
-import com.memorize.memorize.logic.GridLogic;
 import com.memorize.memorize.stages.NewPasswordStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -57,13 +56,6 @@ public class MainController {
     protected void buttonClose() {
         System.exit(0);
     }
-    private boolean mur(int LR) { //Méthode pour empecher l'utilisateur d'aller vers la gauche avec le gridpane 'méthode mur'
-        if (LR==0) {
-            return pos > 0;
-        } else {
-            return pos==0; //on pourra remplacer par ==1 et ==2 et .. quand il y aura plusieurs pages..
-        }
-    }
     @FXML
     protected void setButtonShiftRight() {
         if (mur(1)) {
@@ -86,5 +78,12 @@ public class MainController {
     protected void refresh() {
 
 
+    }
+    private boolean mur(int LR) { //Méthode pour empecher l'utilisateur d'aller vers la gauche avec le gridpane 'méthode mur'
+        if (LR==0) {
+            return pos > 0;
+        } else {
+            return pos==0; //on pourra remplacer par ==1 et ==2 et .. quand il y aura plusieurs pages..
+        }
     }
 }

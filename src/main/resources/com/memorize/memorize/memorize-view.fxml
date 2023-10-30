@@ -20,14 +20,14 @@
     </GridPane>
     
     <AnchorPane fx:id="draggablePane" layoutX="1.0" layoutY="2.0" prefHeight="40.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <Button fx:id="buttonClose" layoutX="950.0" layoutY="4.0" mnemonicParsing="false" onAction="#buttonClose" prefHeight="39.0" prefWidth="42.0" text="X" textAlignment="CENTER" textFill="#c9c9c9" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Button fx:id="buttonClose" alignment="CENTER" contentDisplay="CENTER" onAction="#buttonClose" prefWidth="39.5" text="x" textAlignment="CENTER" textFill="#c9c9c9" textOverrun="CENTER_ELLIPSIS" AnchorPane.bottomAnchor="0.5" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <font>
-                <Font name="Arial" size="15.0" />
+                <Font name="MS Reference Sans Serif" size="16.0" />
             </font>
         </Button>
-      <Label layoutX="14.0" layoutY="12.0" text="Memorize" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutY="12.0" text="Memorize" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="10.0">
          <font>
-            <Font size="15.0" />
+            <Font size="14.0" />
          </font>
       </Label>
       <Button layoutX="715.0" layoutY="2.0" mnemonicParsing="false" text="?" />

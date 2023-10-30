@@ -13,8 +13,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 public class PathManager {
-    private final String PASSFILE = "pslocal.txt";
-    private final String SETFILE = "settings.txt";
+    private final String PASSFILE = "pslocal.wav";
+    private final String SETFILE = "settings.wav";
     private final String PATH = System.getProperty("user.home") + File.separator + "Memorize" + File.separator;
     /*
      * Path control
@@ -104,19 +104,18 @@ public class PathManager {
         } else {
            saveKeyPref(keyPath);
         }
-
     }
     public String userPathDefine(String KEYorPASSorPREF, String saveOrGet){ //Users define the path of the key
         Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();
         if (KEYorPASSorPREF.equals("PASS")) {
-            fileChooser.setTitle("Fichier 'pslocal.txt' contenant votre mot de passe chiffré");
+            fileChooser.setTitle("Fichier 'pslocal.wav' contenant votre mot de passe chiffré");
         } else if (KEYorPASSorPREF.equals("KEY")){
             fileChooser.setTitle("Fichier contenant votre clée de chiffrement");
         } else {
-            fileChooser.setTitle("Fichier 'settings.txt' contenant vos paramettres");
+            fileChooser.setTitle("Fichier 'settings.wav' contenant vos paramettres");
         }
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Fichier texte (*.txt)", "*.txt");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Fichier wav (*.wav)", "*.wav");
         fileChooser.getExtensionFilters().add(extFilter);
 
             File file;
