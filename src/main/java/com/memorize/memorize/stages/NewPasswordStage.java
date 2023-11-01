@@ -5,7 +5,6 @@ import com.memorize.memorize.controller.MainController;
 import com.memorize.memorize.controller.NewPasswordController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;

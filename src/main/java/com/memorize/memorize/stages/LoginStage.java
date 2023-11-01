@@ -28,6 +28,7 @@ public class LoginStage {
             login.setScene(sceneConnect);
         } catch (IOException e){
             System.err.println("Une erreur s'est produite dans la connexion"+e.getMessage());
+            e.printStackTrace();
         }
     }
     public static void connexionShow(){

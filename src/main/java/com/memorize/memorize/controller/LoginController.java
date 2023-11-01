@@ -1,10 +1,9 @@
 package com.memorize.memorize.controller;
 
-import com.memorize.memorize.logic.AuthLogic;
+import com.memorize.memorize.logic.Connexion;
 
-import com.memorize.memorize.logic.PathManager;
+import com.memorize.memorize.logic.security.PathManager;
 import com.memorize.memorize.stages.InscriptionStage;
-import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -12,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 
 public class LoginController {
     /*
@@ -41,7 +39,7 @@ public class LoginController {
     /*
     Classes
      */
-    private final AuthLogic authLogic = new AuthLogic();
+    private final Connexion authLogic = new Connexion();
     private final DesignUI designUI = new DesignUI();
     private final PathManager pathManager = new PathManager();
     /*
@@ -114,7 +112,3 @@ public class LoginController {
         System.exit(0);
     }
 }
-
-//ENTRER PRESSER POUR VALIDER LA CONNEXION
-
-//KEY PRESSED .....

@@ -1,5 +1,8 @@
 package com.memorize.memorize.logic;
 
+import com.memorize.memorize.logic.security.Chiffrement;
+import com.memorize.memorize.logic.security.PathManager;
+
 public class AddPassword {
     private String letter;
     private String site;

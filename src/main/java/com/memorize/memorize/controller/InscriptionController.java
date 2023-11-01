@@ -53,7 +53,7 @@ public class InscriptionController {
     Classes
      */
     private final DesignUI designUI = new DesignUI();
-    private final InscriptionStep inscriptionLogic = new InscriptionStep();
+    private final InscriptionStep inscriptionStep = new InscriptionStep();
     /*
     Initialization
      */
@@ -75,8 +75,8 @@ public class InscriptionController {
         paneGiveInstruction2.getStyleClass().add("paneBehindTextbox");
         vboxStep1.getStyleClass().add("vboxStep");
         vboxStep2.getStyleClass().add("vboxStep");
-        labelStep1.getStyleClass().add("labelStepFalse");
-        labelStep2.getStyleClass().add("labelStepFalse");
+        labelStep1.setStyle("-fx-text-fill: #DB2323;");
+        labelStep2.setStyle("-fx-text-fill: #DB2323;");
 
         String username = System.getProperty("user.name");
         labelInstall.setText("Install ~ " + username);
@@ -87,9 +87,6 @@ public class InscriptionController {
         buttonSetFile.setDisable(true);
         paneGiveInstruction1.setVisible(false);
         paneGiveInstruction2.setVisible(false);
-        paneGiveInstruction1.setDisable(true);
-        paneGiveInstruction2.setDisable(true);
-
 
         Timeline timeline = designUI.getTimeline(passwordLogin, passwordVerifier);
         timeline.play();
@@ -104,14 +101,15 @@ public class InscriptionController {
 
     @FXML
     protected void setButtonGetPSWD() {
-        inscriptionLogic.verification(passwordLogin, passwordVerifier);
+        inscriptionStep.verification(passwordLogin, passwordVerifier, buttonGetPSWD, buttonGetFile, paneGiveInstruction1, paneBehindTextbox);
     }
     @FXML
     protected void setButtonGetFile() {
-        inscriptionLogic.verification(passwordLogin, passwordVerifier);
+       inscriptionStep.getAndCopyFile(labelStep1,buttonSetFile, buttonGetFile, paneGiveInstruction1, paneGiveInstruction2);
     }
     @FXML
     protected void setButtonSetFile() {
-        inscriptionLogic.verification(passwordLogin, passwordVerifier);
+        inscriptionStep.setFile(labelStep2);
+        inscriptionStep.setPassAndPref();
     }
 }
