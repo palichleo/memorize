@@ -1,6 +1,6 @@
 package com.memorize.memorize.logic;
 
-import com.memorize.memorize.logic.security.Chiffrement;
+import com.memorize.memorize.logic.security.Encryption;
 import com.memorize.memorize.stages.LoginStage;
 import com.memorize.memorize.stages.MainStage;
 import javafx.animation.KeyFrame;
@@ -13,7 +13,7 @@ public class Connexion {
     /*
     *   Verifier si le mot de passe est bon, si oui, ouvrir le main
     */
-    Chiffrement chiffrement = new Chiffrement();
+    Encryption chiffrement = new Encryption();
     public void access(PasswordField passwordField, Button connect){
             if (valid(passwordField.getText())) {
                 MainStage main = new MainStage();

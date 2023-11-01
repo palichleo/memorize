@@ -1,6 +1,6 @@
 package com.memorize.memorize.logic.security;
 
-import com.memorize.memorize.logic.security.Chiffrement;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -8,54 +8,90 @@ import javax.crypto.SecretKey;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Random;
 
 public class PathManager {
-    private final String PASSFILE = "pass.enc";
-    private final String SETFILE = "settings.cfg";
-    private String originalFileName; //Uniquement lors de l'inscription
+    private final String PASSFILE = "pass.enc"; private final String SETFILE = "settings.cfg";
     private final String PATH = System.getProperty("user.home") + File.separator + "Memorize" + File.separator;
-    private final Chiffrement chiffrement = new Chiffrement();
-    /*
-     * Prend un fichier et le copie dans le path Memorize
-     */
-    public void inscriptionGetAndCopyFile() throws IOException {
-        //Prendre le fichier
-        String file = userPathDefine("GET");
-        if (file==null){
-            System.err.println("Veuillez spécifier un fichier");
-        } else {
-            Path sourcePath = Paths.get(file);
-            String fileName = sourcePath.getFileName().toString();
-            Path destinationPath = Paths.get(PATH, fileName);
-            //Copier le fichier
-            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-            originalFileName = fileName;
+    private String pathOfKey;
+    private String originalFileName; //Uniquement lors de l'inscription
+    private final Encryption encryption = new Encryption();
+    public PathManager(){
+        Path path = Paths.get(PATH);
+        if (!Files.exists(path)){
+            try {Files.createDirectories(path);
+            } catch (IOException e) {System.err.println("Unable to save Directory");}
         }
     }
-    /*
-     * Modifie le fichier pour y inserer la clée
+    /**
+     *Verify inscription
      */
-    public void inscriptionSetFile(){
-        //On transforme le nombre de ligne en valeur random entre 1 et numberOfLines-1
-        int numberOfLines = numberOfLines();
-        if (numberOfLines>2){ //Ca n'a pas de sens si le fichier contient moins de 3 lignes
-            Random random = new Random();
-            numberOfLines = 1+ random.nextInt(numberOfLines - 1);
+    public boolean inscritVerif(){
+        try {
+            Path path = Paths.get(PATH+SETFILE);
+            return Files.exists(path);
+        } catch (Exception e) {
+            return false;
         }
+    }
+    /**
+     *Encrypt password
+     */
+    public boolean encryptPass(String password){
+        try {encryption.encryptPassword(password);return true;}
+        catch (NoSuchAlgorithmException e){System.err.println("Unable to encrypt password"); return false;}
+    }
+    /**
+     * Take the file and copy it in Memorize path
+     * Modify the file to insert the key
+     */
+    public boolean inscriptionGetCopyAdd() {
+        //Get file
+        String file = getPath();
+        if (file==null){System.err.println("Choose a file");return false;}
+        //Copy file
+        try {
+            Path sourcePath = Paths.get(file);
+            originalFileName = sourcePath.getFileName().toString();
+            Path destinationPath = Paths.get(PATH, originalFileName);
+            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e){System.err.println("Copy failed"); return false;}
+        //Add key in line
+        if (!addKeyInLine()){System.err.println("Impossible to add the key line");return false;}
+        return true;
+    }
+    /**
+     * Save the password in "pass.enc"
+     * Ask where to put the key file
+     * Create "pref.cfg" file
+     */
+        public boolean inscriptionSetFiles(){
+        //set pass file
+        if (!savePassword()){System.err.println("Unable to save 'pass.enc' file");return false;}
+        //ask where to put the key
+        if (!saveKey()){System.err.println("Unable to save the key");return false;}
+        //set pref file
+        if (!savePref()){System.err.println("Unable to save 'pref.cfg'");return false;}
+        return true;
+    }
+    /*
+    Modify the file to insert the key
+     */
+    private boolean addKeyInLine(){
+        int numberOfLines = numberOfLines();
+        if (numberOfLines>2){Random random = new Random();numberOfLines = 1 + random.nextInt(numberOfLines - 1);}
         File file = new File(PATH+originalFileName);
         File tempFile = new File(PATH+"temp.txt");
         try (BufferedReader reader = new BufferedReader(new FileReader(file));
              BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
-            String line;
-            int count = 1;
+            String line; int count = 1;
             while ((line = reader.readLine()) != null) { // Écrire la ligne dans le fichier temporaire
-                writer.write(line);
-                writer.newLine();
+                writer.write(line); writer.newLine();
                 if (count == numberOfLines) { // Insérer la nouvelle ligne après la ligne spécifiée
-                    SecretKey key = chiffrement.getKey();
+                    SecretKey key = encryption.getKey();
                     byte[] keyBytes = key.getEncoded();
                     writer.write(Base64.getEncoder().encodeToString(keyBytes));
                     writer.newLine();
@@ -64,59 +100,89 @@ public class PathManager {
                 }
                 count++;
             }
+            if (!file.delete()) {System.out.println("Impossible de supprimer le fichier original"); return false;}
+            if (!tempFile.renameTo(file)) {System.out.println("Impossible de renommer le fichier temporaire"); return false;}
+            return true;
         } catch (IOException e) {
-            System.err.println("Impossible de stocker la clée");
-        }
-        if (!file.delete()) {
-            System.out.println("Impossible de supprimer le fichier original");
-            return;
-        }
-        if (!tempFile.renameTo(file)) {
-            System.out.println("Impossible de renommer le fichier temporaire");
-        }
-        String pathOfKey = userPathDefine("save");
-        saveKeyPref(pathOfKey);
-        //saveKeyFile(pathOfKey, key);
-    }
-    private void savePassword(byte[] encryptPass) { //Fichier du mdp + password
-        try { Files.createDirectories(Paths.get(PATH)); } catch (IOException e1) {System.err.println("Unable to save Password Directories");}
-        try {
-            Files.write(Paths.get(PATH + PASSFILE), encryptPass, StandardOpenOption.CREATE);
-        } catch (IOException e) {
-            System.err.println("Unable to save Password");
-        }
-    }
-    private void saveKeyFile(String pathOfKey, SecretKey key){
-        try {
-            Files.write(Paths.get(pathOfKey), key.getEncoded(), StandardOpenOption.CREATE);
-        } catch (IOException e) {
-            System.err.println("Unable to save Key");
+            System.err.println("Impossible de stocker la clée"); return false;
         }
     }
     /*
-     * Creer et paramettre les fichier pass et settings
+    Save the password in "pass.enc"
      */
-    public void inscriptionSetPassAndPref(){
-        byte[] encryptPass = chiffrement.getPass();
-
-        Path pass = Paths.get(PATH + PASSFILE);
-        Path pref = Paths.get(PATH + SETFILE);
-        if (Files.exists(pass)){
-            try {
-                Files.delete(pass);
-            } catch (IOException ePass) {
-                System.err.println("Impossible de supprimer le fichier pass");
-            }
-        }
-        if (Files.exists(pref)){
-            try {
-                Files.delete(pref);
-            } catch (IOException ePref) {
-                System.err.println("Impossible de supprimer le fichier pref");
-            }
-        }
-        savePassword(encryptPass);
+    private boolean savePassword() {
+        byte[] encryptPass = encryption.getPass();
+        try {Files.write(Paths.get(PATH + PASSFILE), encryptPass, StandardOpenOption.CREATE); return true;
+        } catch (IOException e) {System.err.println("Unable to save Password"); return false;}
     }
+    /*
+    Ask where to put the key file
+     */
+    private boolean saveKey(){
+        Stage stage = new Stage();
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Folder in which your key will be saved");
+        File folder = directoryChooser.showDialog(stage);
+        stage.close();
+        if(folder==null) return false;
+        try {
+            Path sourcePath = Paths.get(PATH+originalFileName);
+            Path destinationPath = Paths.get(folder.getAbsolutePath(), originalFileName);
+            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e){System.err.println("Copy failed"); return false;}
+        File file = new File(PATH+originalFileName);
+        if (!file.delete()) {System.out.println("Impossible de supprimer le fichier original"); return false;}
+        pathOfKey = Paths.get(folder.getAbsolutePath(), originalFileName).toString();
+        return true;
+    }
+    /*
+    Create "pref.cfg" file
+     */
+    private boolean savePref(){
+        try {
+            Files.write(Paths.get(PATH + SETFILE), pathOfKey.getBytes(), StandardOpenOption.CREATE);
+            return true;
+        } catch (IOException e) {
+            System.err.println("Unable to save Preferences");
+            return false;
+        }
+    }
+    /*
+    Find the key file
+     */
+    private String getPath(){
+        Stage stage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Encrypted file key");
+        File file = fileChooser.showOpenDialog(stage);
+        stage.close();
+        if(file==null) return null;
+        return file.getAbsolutePath();
+    }
+    /*
+    Find the number of line inside a file
+     */
+    private int numberOfLines(){
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(PATH + originalFileName));
+            int lines = 0;
+            try {
+                while (reader.readLine() != null) {
+                    lines++;
+                }
+                return lines;
+            } catch (IOException e) {
+                System.err.println("Impossible to read file on Memorize"); return 0;
+            }
+        } catch (FileNotFoundException f){
+            System.err.println("Impossible to found file on Memorize"); return 0;
+        }
+    }
+
+
+    /*
+
+
     public byte[] getKeyPref(){
         try {
             return Files.readAllBytes(Paths.get(PATH + SETFILE));
@@ -146,69 +212,14 @@ public class PathManager {
             return new byte[0]; //réasignement
         }
     }
+    */
     public void reassignmentKeyPath(){
-        String keyPath = userPathDefine("GET"); //Appel d'un stage permettant de recuperer la clée
-        //On save le path
+        String keyPath = getPath();
         if (keyPath==null){
             System.err.println("Veuillez spécifier un fichier");
         } else {
-            saveKeyPref(keyPath);
-        }
-    }
-    public String userPathDefine(String saveOrGet){ //Users define the path of the key
-        Stage stage = new Stage();
-        FileChooser fileChooser = new FileChooser();
-
-        fileChooser.setTitle("Fichier contenant votre clée de chiffrement");
-
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Fichier wav (*.wav)", "*.wav");
-        fileChooser.getExtensionFilters().add(extFilter);
-
-        File file;
-
-        if (saveOrGet.equals("save")){
-            file = fileChooser.showSaveDialog(stage);
-        } else {
-            file = fileChooser.showOpenDialog(stage);
-        }
-
-        stage.close();
-        if(file != null) return file.getAbsolutePath();
-        return null;
-    }
-    public boolean inscritVerif(){
-        try {
-            Path path = Paths.get(PATH+SETFILE);
-            return Files.exists(path);
-        } catch (Exception e) {
-            return false;
-        }
-    }
-    /*
-    Trouve le nombre de lignes présent dans un fichier
-     */
-    private int numberOfLines(){
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(PATH + originalFileName));
-            int lines = 0;
-            try {
-                while (reader.readLine() != null) {
-                    lines++;
-                }
-                return lines;
-            } catch (IOException e) {
-                return 0;
-            }
-        } catch (FileNotFoundException f){
-            return 0;
+           // saveKeyPref(keyPath);
         }
     }
 
-    private void saveKeyPref(String pathOfKey) { //Preference de l'utilisateur concernant le chemin de la clée
-        try {
-            Files.write(Paths.get(PATH + SETFILE), pathOfKey.getBytes(), StandardOpenOption.CREATE);
-        } catch (IOException e) {
-            System.err.println("Unable to save Preferences");
-        }
-    }
 }

@@ -6,27 +6,21 @@ import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-public class Chiffrement {
-    //private final PathManager pathManager = new PathManager();
+public class Encryption {
     private final String ALGORITHM = "AES";
     private SecretKey getKey;
     private byte[] encryptPass;
-
-    /*
-     * Usable methods
-     */
-
-    public void chiffrerPassword(String password) throws NoSuchAlgorithmException { //Usable everywhere
-        getKey = keygen(); //Stock la clée dans une variable "getKey"
-        encryptPass = encrypt(password.getBytes(StandardCharsets.UTF_8), getKey); //Password chiffré
+    protected void encryptPassword(String password) throws NoSuchAlgorithmException {
+        getKey = keygen();
+        encryptPass = encrypt(password.getBytes(StandardCharsets.UTF_8), getKey);
     }
-    public SecretKey getKey(){
+    protected SecretKey getKey(){
         return getKey;
     }
-    public byte[] getPass(){
+    protected byte[] getPass(){
         return encryptPass;
     }
-    public String dechiffrerPassword() {
+    protected String dechiffrerPassword() {
         try {
             byte[] keyBytes = null; //pathManager.keyReader();
             SecretKey key = new SecretKeySpec(keyBytes, 0, keyBytes.length, ALGORITHM);

@@ -109,7 +109,6 @@ public class InscriptionController {
     }
     @FXML
     protected void setButtonSetFile() {
-        inscriptionStep.setFile(labelStep2);
-        inscriptionStep.setPassAndPref();
+        inscriptionStep.setFiles(labelStep2, buttonSetFile);
     }
 }
