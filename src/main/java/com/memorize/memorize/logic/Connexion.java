@@ -1,6 +1,7 @@
 package com.memorize.memorize.logic;
 
 import com.memorize.memorize.logic.security.Encryption;
+import com.memorize.memorize.logic.security.PathManager;
 import com.memorize.memorize.stages.LoginStage;
 import com.memorize.memorize.stages.MainStage;
 import javafx.animation.KeyFrame;
@@ -13,7 +14,7 @@ public class Connexion {
     /*
     *   Verifier si le mot de passe est bon, si oui, ouvrir le main
     */
-    Encryption chiffrement = new Encryption();
+    PathManager pathManager = new PathManager();
     public void access(PasswordField passwordField, Button connect){
             if (valid(passwordField.getText())) {
                 MainStage main = new MainStage();
@@ -40,7 +41,7 @@ public class Connexion {
     }
     private boolean valid(String password) {
         try {
-            return true; //password.equals(chiffrement.dechiffrerPassword()); //Retourne true si le mot de passe est bon
+            return password.equals(pathManager.decrypt()); //Retourne true si le mot de passe est bon
         } catch (Exception e){
             return false;
         }

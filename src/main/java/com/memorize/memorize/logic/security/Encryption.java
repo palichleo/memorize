@@ -20,21 +20,20 @@ public class Encryption {
     protected byte[] getPass(){
         return encryptPass;
     }
-    protected String dechiffrerPassword() {
+    protected String getALGORITHM(){
+        return ALGORITHM;
+    }
+    protected String decrypt(byte[] password, SecretKey key) {
         try {
-            byte[] keyBytes = null; //pathManager.keyReader();
-            SecretKey key = new SecretKeySpec(keyBytes, 0, keyBytes.length, ALGORITHM);
-            Arrays.fill(keyBytes, (byte) 0);
-            return null; //decrypt(pathManager.passReader(), key);
-        } catch (Exception e) {
-            return null;
+            Cipher cipher = getCipher();
+            cipher.init(Cipher.DECRYPT_MODE, key);
+
+            return new String(cipher.doFinal(password), StandardCharsets.UTF_8);
+        } catch (Exception e){
+            System.err.println("Error Decrypt");
+            return "Error";
         }
     }
-
-    /*
-     * Logique de chiffrement
-     */
-
     private SecretKey keygen() throws NoSuchAlgorithmException { //Genere une clée de chiffrement aléatoire
         KeyGenerator keygen = KeyGenerator.getInstance(ALGORITHM);
         keygen.init(256);
@@ -53,17 +52,6 @@ public class Encryption {
         } catch (Exception e) {
             System.err.println("Chiffrement impossible");
             return new byte[0];
-        }
-    }
-    private String decrypt(byte[] password, SecretKey key) {
-        try {
-            Cipher cipher = getCipher();
-            cipher.init(Cipher.DECRYPT_MODE, key);
-
-            return new String(cipher.doFinal(password), StandardCharsets.UTF_8);
-        } catch (Exception e){
-            System.err.println("Error Decrypt");
-            return "Error";
         }
     }
 }
