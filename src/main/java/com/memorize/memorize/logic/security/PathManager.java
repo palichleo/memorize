@@ -10,6 +10,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Arrays;
 
 public class PathManager {
@@ -18,6 +19,7 @@ public class PathManager {
     private String pathOfKey;
     private String originalFileName; File fileInMemorize; //Uniquement lors de l'inscription
     private final Encryption encryption = new Encryption();
+    private final SecureRandom secureRandom = new SecureRandom();
     public PathManager(){
         Path path = Paths.get(PATH);
         if (!Files.exists(path)){
@@ -68,7 +70,6 @@ public class PathManager {
      * Create "pref.cfg" file
      */
         public boolean inscriptionSetFiles(){
-
         //set pass file
         if (!savePassword()){System.err.println("Unable to save 'pass.enc' file");return false;}
         //ask where to put the key
@@ -79,22 +80,46 @@ public class PathManager {
         if (!savePref()){System.err.println("Unable to save 'pref.cfg'");return false;}
         return true;
     }
+    /**
+     *Decrypt the password with the key
+     */
+    public String decrypt(){
+        byte[] keyBytes = keyReader();
+        try {
+            SecretKey key = new SecretKeySpec(keyBytes, 0, keyBytes.length, encryption.getALGORITHM());
+            return encryption.decrypt(passReader(), key);
+        } finally {
+            secureRandom.nextBytes(keyBytes);
+        }
+    }
+    /**
+     *Reassignment of the key path
+     */
+    public void reassignmentKeyPath(){
+        pathOfKey = getPath();
+        if (pathOfKey==null){
+            System.err.println("Please specify a file");
+        } else {
+            savePref();
+        }
+    }
     /*
     Modify the file to insert the key
      */
     private boolean addKeyInLine(){
         fileInMemorize = new File(PATH+originalFileName);
 
-        SecretKey key = encryption.getKey(); byte[] keyBytes = key.getEncoded();
+        SecretKey key = encryption.getKey();
+        byte[] keyBytes = key.getEncoded();
 
         try (RandomAccessFile file = new RandomAccessFile(fileInMemorize, "rw")) {
             file.seek(file.length());
             file.write(keyBytes);
         } catch (IOException e) {
             System.err.println("Unable to store key"); return false;
+        } finally {
+            secureRandom.nextBytes(keyBytes);
         }
-        Arrays.fill(keyBytes, (byte) 0);
-        key = null;
         return true;
     }
     private boolean deleteAndRename(){
@@ -106,8 +131,15 @@ public class PathManager {
      */
     private boolean savePassword() {
         byte[] encryptPass = encryption.getPass();
-        try {Files.write(Paths.get(PATH + PASSFILE), encryptPass, StandardOpenOption.CREATE); return true;
-        } catch (IOException e) {System.err.println("Unable to save Password"); return false;}
+        try {
+            Files.write(Paths.get(PATH + PASSFILE), encryptPass, StandardOpenOption.CREATE);
+            return true;
+        } catch (IOException e) {
+            System.err.println("Unable to save Password"); return false;
+        }
+        finally {
+            secureRandom.nextBytes(encryptPass);
+        }
     }
     /*
     Ask where to put the key file
@@ -151,16 +183,6 @@ public class PathManager {
         if(file==null) return null;
         return file.getAbsolutePath();
     }
-    public String decrypt(){
-        try {
-            byte[] keyBytes = keyReader();
-            SecretKey key = new SecretKeySpec(keyBytes, 0, keyBytes.length, encryption.getALGORITHM());
-            Arrays.fill(keyBytes, (byte) 0);
-            return encryption.decrypt(passReader(), key);
-        } catch (Exception e) {
-            return null;
-        }
-}
     private byte [] keyReader(){
         if (!getKeyPath()) {
             System.err.println("Impossible to recover the key preference, reassignment necessary.");
@@ -192,6 +214,7 @@ public class PathManager {
         try {
             byte[] keyPathByte = Files.readAllBytes(Paths.get(PATH + SETFILE));
             pathOfKey = new String(keyPathByte, StandardCharsets.UTF_8);
+            secureRandom.nextBytes(keyPathByte);
             return true;
         } catch (IOException e) {
             System.err.println("Unable to retrieve preferences");
@@ -204,14 +227,6 @@ public class PathManager {
         } catch (IOException e) {
             System.err.println("Unable to recover pass file");
             return new byte[0];
-        }
-    }
-    public void reassignmentKeyPath(){
-        pathOfKey = getPath();
-        if (pathOfKey==null){
-            System.err.println("Please specify a file");
-        } else {
-           savePref();
         }
     }
 }

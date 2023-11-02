@@ -27,7 +27,6 @@ public class Encryption {
         try {
             Cipher cipher = getCipher();
             cipher.init(Cipher.DECRYPT_MODE, key);
-
             return new String(cipher.doFinal(password), StandardCharsets.UTF_8);
         } catch (Exception e){
             System.err.println("Error Decrypt");
