@@ -1,8 +1,8 @@
 .buttonClose {
     -fx-background-color: transparent;
     -fx-alignment: center;
-    -fx-border-radius: 0px;
-    -fx-background-radius: 0px;
+    -fx-background-radius: 0 4 0 0;
+    -fx-border-radius: 0 4 0 0;
 }
 .buttonClose:hover {
     -fx-background-color: rgba(169, 3, 1, 0.8);
@@ -12,64 +12,121 @@
     -fx-background-color: rgba(169, 3, 1, 0.6);
 }
 .buttonShift {
-    -fx-background-color: #40AB60;
-    -fx-cursor: hand;
+    -fx-background-color: rgba(34, 140, 219, 0.2);
+    -fx-border-color: #228CDB;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+.buttonShift:hover {
+    -fx-background-color: rgba(34, 140, 219, 0.8);
+}
+.buttonShift:pressed{
+    -fx-background-color: rgba(34, 140, 219, 0.6);
 }
 .buttonAdd {
-    -fx-background-color: #40AB60;
+    -fx-background-color: rgba(219, 35, 35, 0.20);
+    -fx-border-color: #DB2323;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+.buttonAdd:hover{
+    -fx-background-color: rgba(219, 35, 35, 0.80);
+}
+.buttonAdd:pressed{
+    -fx-background-color: rgba(219, 35, 35, 0.60);
 }
 .buttonNewPass{
-    -fx-background-color: #40AB60;
-    -fx-border-width: 0.2 0.2 0.2 0.2;
-    -fx-alignment: center;
-    -fx-border-radius: 3px;
-    -fx-background-radius: 3px;
-    -fx-effect: innershadow(gaussian, rgb(16, 37, 66), 2, 0.2, 0.0, 0.0);
+    -fx-background-color: rgba(34, 140, 219, 0.2);
+    -fx-border-color: #228CDB;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+.buttonNewPass:hover {
+    -fx-background-color: rgba(34, 140, 219, 0.8);
+}
+.buttonNewPass:pressed{
+    -fx-background-color: rgba(34, 140, 219, 0.6);
 }
 .buttonReset{
-    -fx-background-color: #7A89C2;
+    -fx-background-color: rgba(219, 35, 35, 0.20);
+    -fx-border-color: #DB2323;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
 }
-
+.buttonReset:hover{
+    -fx-background-color: rgba(219, 35, 35, 0.80);
+}
+.buttonReset:pressed{
+    -fx-background-color: rgba(219, 35, 35, 0.60);
+}
 .draggablePane {
-    -fx-background-color:  #102542;
+    -fx-background-color: rgba(16, 37, 66, 0.85);
+    -fx-background-radius: 4 4 0 0;
+    -fx-border-radius: 4 4 0 0;
 }
 .anchorBackground{
-    -fx-background-color: #E0E0E0;
+    -fx-background-color: transparent;
     -fx-border-color: #102542;
+    -fx-border-width: 0.9;
+    -fx-background-radius: 5 5 5 5;
+    -fx-border-radius: 5 5 5 5;
 }
-.anchorPaneAddPassword{
+.paneBehindAdd{
     -fx-border-width: 0.2 0.2 0.2 0.2;
     -fx-background-color: #102542;
-    -fx-background-radius: 3px;
-    -fx-border-radius: 3px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
     -fx-effect: innershadow(gaussian, rgb(224, 224, 224), 2, 0.2, 0.0, 0.0);
     -fx-opacity: 0.9;
+}
+.paneBack {
+    -fx-background-color : rgba(224, 224, 224, 0.90);
+    -fx-background-radius: 0 0 5 5;
+    -fx-border-radius: 0 0 5 5;
 }
 
 .gridPane{
     -fx-background-color: #E0E0E0;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
 }
 .cell {
     -fx-border-width: 0.2 0.2 0.2 0.2;
     -fx-background-color: #102542;
-    -fx-background-radius: 3px;
-    -fx-border-radius: 3px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
     -fx-effect: innershadow(gaussian, rgb(224, 224, 224), 2, 0.2, 0.0, 0.0);
     -fx-opacity: 0.9;
 }
-.textSite{
-    -fx-border-color: #102542;
-}
-.textPassword{
-    -fx-border-color: #102542;
+.textField{
+    -fx-background-color: #E0E0E0;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-cursor: pointer;
 }
 
 .labelChar {
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: rgba(255, 255, 255, 0.02);
+    -fx-font-family: "Arial";
+    -fx-font-size: 150px;
 }
 .labelSite {
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: rgba(255, 255, 255, 0.8);
+    -fx-font-family: "Arial";
+    -fx-font-size: 20px;
 }
-.labelPassword {
+.labelUsername {
     -fx-text-fill: #FFFFFF;
+    -fx-font-family: "System";
+    -fx-font-size: 12px;
+}
+.password {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "System";
+    -fx-font-size: 12px;
 }

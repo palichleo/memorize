@@ -3,6 +3,7 @@ package com.memorize.memorize.controller;
 import com.memorize.memorize.stages.NewPasswordStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -25,19 +26,24 @@ public class MainController {
     @FXML
     private AnchorPane anchorBackground;
     @FXML
+    private AnchorPane paneBack;
+    @FXML
     private GridPane gridPane;
+    @FXML
+    private Label labelMemorize;
     /*
     Classes & var
      */
     private final DesignUI shiftUI = new DesignUI();
     private final GridLogic gridLogic = new GridLogic();
     private int pos = 0;
-
     /*
     Initialization
      */
     @FXML
     protected void initialize() {
+        String username = System.getProperty("user.name");
+
         shiftUI.paneDragSettings(draggablePane);
         buttonClose.getStyleClass().add("buttonClose");
         buttonShiftRight.getStyleClass().add("buttonShift");
@@ -45,8 +51,14 @@ public class MainController {
         buttonReset.getStyleClass().add("buttonReset");
         draggablePane.getStyleClass().add("draggablePane");
         anchorBackground.getStyleClass().add("anchorBackground");
+        paneBack.getStyleClass().add("paneBack");
         gridPane.getStyleClass().add("gridPane");
         buttonAdd.getStyleClass().add("buttonAdd");
+        labelMemorize.setText("Memorize ~ " + username);
+
+        getVBoxes();
+    }
+    protected void getVBoxes(){
         gridLogic.resetAndCreate(gridPane);
     }
     /*

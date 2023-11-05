@@ -5,6 +5,7 @@ import com.memorize.memorize.controller.MainController;
 import com.memorize.memorize.controller.NewPasswordController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -23,11 +24,12 @@ public class NewPasswordStage {
         try {
             pass = new Stage();
             pass.setTitle("New Password");
-            pass.initStyle(StageStyle.UNDECORATED);
+            pass.initStyle(StageStyle.TRANSPARENT);
             pass.setResizable(false);
-            pass.initModality(Modality.APPLICATION_MODAL); //Les autres stages sont inutilisables
+            pass.initModality(Modality.APPLICATION_MODAL);
 
             Scene passScene = new Scene(inFXML.load(), 330, 200);
+            passScene.setFill(Color.TRANSPARENT);
             passScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/memorize/memorize/style/main.css")).toExternalForm());
 
             NewPasswordController newPasswordController = inFXML.getController();

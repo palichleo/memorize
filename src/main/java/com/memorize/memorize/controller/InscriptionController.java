@@ -59,6 +59,8 @@ public class InscriptionController {
      */
     @FXML
     protected void initialize(){
+        String username = System.getProperty("user.name");
+
         designUI.paneDragSettings(draggablePane);
 
         buttonClose.getStyleClass().add("buttonClose");
@@ -78,7 +80,6 @@ public class InscriptionController {
         labelStep1.setStyle("-fx-text-fill: #DB2323;");
         labelStep2.setStyle("-fx-text-fill: #DB2323;");
 
-        String username = System.getProperty("user.name");
         labelInstall.setText("Install ~ " + username);
 
         buttonGetFile.setVisible(false);

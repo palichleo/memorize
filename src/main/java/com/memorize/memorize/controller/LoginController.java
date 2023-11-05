@@ -47,6 +47,8 @@ public class LoginController {
      */
     @FXML
     protected void initialize() {
+        String username = System.getProperty("user.name");
+
         designUI.paneDragSettings(draggablePane);
 
         buttonConnect.getStyleClass().add("buttonConnect");
@@ -59,7 +61,6 @@ public class LoginController {
         draggablePane.getStyleClass().add("draggablePane");
         passwordLogin.getStyleClass().add("passwordLogin");
 
-        String username = System.getProperty("user.name");
         labelLogin.setText("Login ~ " + username);
 
         if (pathManager.inscritVerif()){

@@ -20,7 +20,7 @@ public class InscriptionStage {
             in.setTitle("Inscription");
             in.initStyle(StageStyle.TRANSPARENT);
             in.setResizable(false);
-            in.initModality(Modality.APPLICATION_MODAL); //Les autres stages sont inutilisables
+            in.initModality(Modality.APPLICATION_MODAL);
 
             Scene inScene = new Scene(inFXML.load(), 230, 206);
             inScene.setFill(Color.TRANSPARENT);

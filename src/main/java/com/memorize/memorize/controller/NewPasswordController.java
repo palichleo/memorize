@@ -3,10 +3,12 @@ package com.memorize.memorize.controller;
 import com.memorize.memorize.logic.AddPassword;
 import com.memorize.memorize.stages.NewPasswordStage;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class NewPasswordController {
@@ -24,21 +26,27 @@ public class NewPasswordController {
     @FXML
     private TextField textPassword;
     @FXML
+    private TextField textUsername;
+    @FXML
     private AnchorPane anchorBackground;
     @FXML
-    private AnchorPane anchorPaneAddPassword;
+    private AnchorPane paneBehindAdd;
     @FXML
-    private VBox vboxVisualyze;
+    private AnchorPane paneBack;
+    @FXML
+    private StackPane StackPaneVisualyze;
     @FXML
     private Label labelChar;
     @FXML
     private Label labelSite;
     @FXML
+    private Label labelUsername;
+    @FXML
     private Label labelPassword;
     /*
    Classes
     */
-    private final DesignUI shiftUI = new DesignUI();
+    private final DesignUI designUI = new DesignUI();
     public MainController mainController;
     public void setMain(MainController controller){
         this.mainController = controller;
@@ -48,19 +56,21 @@ public class NewPasswordController {
      */
     @FXML
     protected void initialize(){
-        shiftUI.paneDragSettings(draggablePane);
+        designUI.paneDragSettings(draggablePane);
         //Styles
         closeButton.getStyleClass().add("buttonClose");
         buttonNewPass.getStyleClass().add("buttonNewPass");
         anchorBackground.getStyleClass().add("anchorBackground");
-        anchorPaneAddPassword.getStyleClass().add("anchorPaneAddPassword");
+        paneBehindAdd.getStyleClass().add("paneBehindAdd");
         draggablePane.getStyleClass().add("draggablePane");
-        textSite.getStyleClass().add("textSite");
-        textPassword.getStyleClass().add("textPassword");
-        vboxVisualyze.getStyleClass().add("cell");
-        labelChar.getStyleClass().add("labelChar");
-        labelSite.getStyleClass().add("labelSite");
-        labelPassword.getStyleClass().add("labelPassword");
+        paneBack.getStyleClass().add("paneBack");
+        textSite.getStyleClass().add("textField");
+        textPassword.getStyleClass().add("textField");
+        textUsername.getStyleClass().add("textField");
+        StackPaneVisualyze.getStyleClass().add("cell");
+
+        designUI.setStyleInsideStackPane(labelChar, labelSite, labelUsername, labelPassword, StackPaneVisualyze);
+
         /*
         Listeners gerant les textfields et les labels
          */
@@ -68,15 +78,21 @@ public class NewPasswordController {
         textSite.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null && !newValue.isEmpty()) {
                 char letter = newValue.charAt(0);
-                labelChar.setText(String.valueOf(letter));
+                labelChar.setText(String.valueOf(letter).toUpperCase());
             }
         });
         labelSite.textProperty().bind(textSite.textProperty());
+        labelUsername.textProperty().bind(textUsername.textProperty());
         labelPassword.textProperty().bind(textPassword.textProperty());
         //On limite le nombre de caractères
         textSite.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null && newValue.length() > 15) {  // Limite à 15 caractères
+            if (newValue != null && newValue.length() > 30) {  // Limite à 30 caractères
                 textSite.setText(oldValue);
+            }
+        });
+        textUsername.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && newValue.length() > 30) {
+                textUsername.setText(oldValue);
             }
         });
         textPassword.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -84,6 +100,8 @@ public class NewPasswordController {
                 textPassword.setText(oldValue);
             }
         });
+
+
 
 
         //Refresh

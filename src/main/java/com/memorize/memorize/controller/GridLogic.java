@@ -1,55 +1,78 @@
 package com.memorize.memorize.controller;
 
-import javafx.application.Platform;
+import com.memorize.memorize.logic.security.PathManager;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 
 public class GridLogic {
     private int size;
-    private VBox[][] vBoxes;
+    private StackPane[][] stackPanes;
+    private final PathManager pathManager = new PathManager();
+    private final DesignUI designUI = new DesignUI();
 
-    public void resetAndCreate(GridPane grille){
-        //SIZE
+    public GridLogic(){
+        //apres
+    }
+
+    protected void resetAndCreate(GridPane grille){
         setSIZE();
+        createStackPane();
         //CLEAR
         grille.getChildren().clear();
         grille.getColumnConstraints().clear();
         grille.getRowConstraints().clear();
         //CONSTRAINTS
         ColumnConstraints columnConstraints = new ColumnConstraints();
-        columnConstraints.setHgrow(Priority.ALWAYS);
+
+        columnConstraints.setPercentWidth(100.0 / size); // Définir le pourcentage de largeur
+        columnConstraints.setFillWidth(true); // Permettre le remplissage de la largeur
         RowConstraints rowConstraints = new RowConstraints();
-        rowConstraints.setVgrow(Priority.ALWAYS);
+        rowConstraints.setPercentHeight(100.0 / size); // Définir le pourcentage de hauteur
+        rowConstraints.setFillHeight(true); // Permettre le remplissage de la hauteur
+
         //CREATE
         for (int i = 0; i<size; i++){
             grille.getRowConstraints().add(rowConstraints);
             grille.getColumnConstraints().add(columnConstraints);
             for (int j = 0; j<size; j++){
-                grille.add(vBoxes[i][j], i, j);
-                vBoxes[i][j].getStyleClass().add("cell");
+                grille.add(stackPanes[i][j], i, j);
+                try {setstackPanesChild(i, j);} catch (PathManager.FileTooSmallException ignored){}
+                stackPanes[i][j].getStyleClass().add("cell");
+                stackPanes[i][j].setAlignment(Pos.CENTER);
             }
         }
     }
-    public VBox getVbox(int row, int col){
-        return vBoxes[row][col];
-    }
-    public void setVboxesChild(int row, int line, char car){ //CHAR CAR est le caractere symbolique du site web
-        Platform.runLater(() -> {
+    protected void setstackPanesChild(int row, int line) throws PathManager.FileTooSmallException {
 
-            Label caractere = new Label();
-            caractere.setText("" + car);
+        String siteName = "abcd.com"; //pathManager.getInformation(row+line+1, 0);
+        String pass = "abcdpass"; //pathManager.getInformation(row+line+1, 1);
+        String user = "abcduser"; //pathManager.getInformation(row+line+1, 2);
 
-            vBoxes[row][line].getChildren().add(caractere);
-        });
+        char letter = siteName.charAt(0); Label character = new Label(String.valueOf(letter).toUpperCase()); //Style Char
+        Label site = new Label(siteName); //SiteName
+        Label username = new Label(user); //UserName
+        Label password = new Label(pass); //Password
+
+        designUI.setStyleInsideStackPane(character, site, username, password, stackPanes[row][line]);
+
+        stackPanes[row][line].getChildren().add(character);
+        stackPanes[row][line].getChildren().add(site);
+        stackPanes[row][line].getChildren().add(username);
+        stackPanes[row][line].getChildren().add(password);
+
+
     }
 
     private void setSIZE(){
-        int setSize = (int) Math.sqrt(9);
-        this.size = setSize;
-        this.vBoxes = new VBox[size][size];
+        this.size = (int) Math.sqrt(9);
+    }
+    private void createStackPane(){
+        this.stackPanes = new StackPane[size][size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                vBoxes[i][j] = new VBox();
+                stackPanes[i][j] = new StackPane();
             }
         }
     }

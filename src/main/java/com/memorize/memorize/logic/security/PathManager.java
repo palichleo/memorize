@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 public class PathManager {
     private final String PASSFILE = "pass.enc"; private final String SETFILE = "settings.cfg";
+    private final String BDDPASS = "bddpass.enc"; private final String BDDNAME = "bddname.enc"; private final String BDDUSER = "bdduser.enc";
     private final String PATH = System.getProperty("user.home") + File.separator + "Memorize" + File.separator;
     private String pathOfKey;
     private String originalFileName; File fileInMemorize; //Uniquement lors de l'inscription
@@ -32,7 +33,7 @@ public class PathManager {
      */
     public boolean inscritVerif(){
         try {
-            Path path = Paths.get(PATH+SETFILE);
+            Path path = Paths.get(PATH+PASSFILE);
             return Files.exists(path);
         } catch (Exception e) {
             return false;
@@ -102,6 +103,51 @@ public class PathManager {
         } else {
             savePref();
         }
+    }
+
+    /**
+     * Pour un fichier donné, cherche une chaine de byte et la décrypte avec la clée
+     * @param file 0 : name ;
+     *             1 : pass ;
+     *             2 : username
+     * @return String : Name or Password or UserName
+     */
+    public String getInformation(int where, int file) throws FileTooSmallException {
+        File bdd;
+        if (file==0){bdd = new File(PATH + BDDNAME);}
+        else if (file==1){bdd = new File(PATH + BDDPASS);}
+        else {bdd = new File(PATH + BDDUSER);}
+
+        byte[] keyBytes = keyReader();
+
+        try {
+            byte[] nameOrPassBytes = decryptBDD(where, bdd);
+            SecretKey key = new SecretKeySpec(keyBytes, 0, keyBytes.length, encryption.getALGORITHM());
+            return encryption.decrypt(nameOrPassBytes, key);
+        } catch (ReadImpossible e){
+            return null;
+        } finally {
+        secureRandom.nextBytes(keyBytes);
+        }
+    }
+    private byte[] decryptBDD(int where, File file) throws FileTooSmallException, ReadImpossible {
+            byte[] passwordBytes = new byte[32]; // Pour AES 256
+
+            try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")) {
+                long fileLength = randomAccessFile.length();
+                long startPosition = fileLength - (where * 32L);
+
+                // Vérifier si la position de départ est valide
+                if (startPosition >= 0) {
+                    randomAccessFile.seek(startPosition);
+                    randomAccessFile.readFully(passwordBytes);
+                    return passwordBytes;
+                } else {
+                    throw new FileTooSmallException("too small");
+                }
+            } catch (IOException e) {
+                throw new ReadImpossible("Impossible de lire le fichier");
+            }
     }
     /*
     Modify the file to insert the key
@@ -195,7 +241,7 @@ public class PathManager {
 
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(pathOfKey, "r")) {
             long length = randomAccessFile.length();
-            if (length > bytesCount) {
+            if (length >= bytesCount) {
                 randomAccessFile.seek(length - bytesCount);
                 randomAccessFile.readFully(bytes);
                 return bytes;
@@ -227,6 +273,19 @@ public class PathManager {
         } catch (IOException e) {
             System.err.println("Unable to recover pass file");
             return new byte[0];
+        }
+    }
+    /*
+    Exceptions
+     */
+    public static class FileTooSmallException extends Exception {
+        public FileTooSmallException(String message) {
+            super(message);
+        }
+    }
+    static class ReadImpossible extends Exception {
+        public ReadImpossible(String message) {
+            super(message);
         }
     }
 }

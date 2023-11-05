@@ -12,7 +12,7 @@
             <Font size="14.0" />
         </font>
         </Label>
-        <Button fx:id="buttonClose" alignment="CENTER" contentDisplay="CENTER" onAction="#closeBtn" prefWidth="39.5" text="x" textAlignment="CENTER" textFill="#c9c9c9" textOverrun="CENTER_ELLIPSIS" AnchorPane.bottomAnchor="0.5" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Button fx:id="buttonClose" alignment="CENTER" contentDisplay="CENTER" onAction="#closeBtn" prefWidth="39.5" text="x" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" AnchorPane.bottomAnchor="0.5" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="MS Reference Sans Serif" size="16.0" />
          </font></Button>

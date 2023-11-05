@@ -3,9 +3,12 @@ package com.memorize.memorize.controller;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 public class DesignUI {
@@ -87,5 +90,26 @@ public class DesignUI {
         timeline.getKeyFrames().add(keyFrame);
 
         timeline.play();
+    }
+    protected void setStyleInsideStackPane(Label labelChar, Label labelSite, Label labelUsername, Label labelPassword, StackPane stackPane){
+        stackPane.setMinSize(0, 0);
+        stackPane.setPrefSize(140, 140);
+        stackPane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+
+        labelChar.getStyleClass().add("labelChar");
+        labelChar.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        labelChar.setAlignment(Pos.CENTER);
+
+        labelSite.getStyleClass().add("labelSite");
+        labelSite.setMaxSize(stackPane.getPrefWidth() - 10, stackPane.getPrefHeight() - 50);
+        labelSite.setAlignment(Pos.TOP_CENTER);
+
+        labelUsername.getStyleClass().add("labelUsername");
+        labelUsername.setMaxSize(stackPane.getPrefWidth() - 10, stackPane.getPrefHeight());
+        labelUsername.setAlignment(Pos.CENTER);
+
+        labelPassword.getStyleClass().add("password");
+        labelPassword.setMaxSize(stackPane.getPrefWidth() - 10, stackPane.getPrefHeight() - 10);
+        labelPassword.setAlignment(Pos.BOTTOM_CENTER);
     }
 }

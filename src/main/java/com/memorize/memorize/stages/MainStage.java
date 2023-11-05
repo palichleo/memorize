@@ -3,6 +3,7 @@ package com.memorize.memorize.stages;
 import com.memorize.memorize.Memorize;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -15,9 +16,11 @@ public class MainStage {
     public void memorizeMain() {
         try {
             memorize.setTitle("Memorize");
-            memorize.initStyle(StageStyle.UNDECORATED);
+            memorize.setResizable(false);
+            memorize.initStyle(StageStyle.TRANSPARENT);
 
             Scene memorizeScene = new Scene(memorizeMainFXML.load(), 820, 620);
+            memorizeScene.setFill(Color.TRANSPARENT);
             memorizeScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/memorize/memorize/style/main.css")).toExternalForm());
 
             memorize.setScene(memorizeScene);
